@@ -1,89 +1,90 @@
 import React from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import { states } from '../data/states.js'
-import { departments } from '../data/departments.js'
-import { handleMouseEnter, handleMouseLeave, setMenuItemIdSelected } from "./Store.js";
 
 
-function giveListStyle(selectmenuId) {
-    if(selectmenuId === "state") {
-        return {
-            top: 679.5,
-            left: 630
-        }
-    } else if(selectmenuId === "department") {
-        return {
-            top: 833.9,
-            left: 614.4
-        }
-    } else{
-        return null
-    }
-}
-
-function setListData(selectmenuId) {
-    if(selectmenuId === "state") {
-        return states
-    } else if(selectmenuId === "department") {
-        return departments
-    } else{
-        return null
-    }
-}
-
-
-export default function DrawMenu({ selectmenuId, ids }) {
-    const dispatch = useDispatch();
-
-    const isSelectMenuOpen = useSelector((state) => {
-        if(selectmenuId === "state") {
-            return state.isSelectStateMenuOpen
-        } else if(selectmenuId === "department") {
-            return state.isSelectDepartmentMenuOpen
-        } else{
-            return null
-        }
-    });
-
-    const index = useSelector((state) => {
-        if(selectmenuId === "state") {
-            return state.statesIndex
-        } else if(selectmenuId === "department") {
-            return state.departmentIndex
-        } else{
-            return null
-        }
-    });
-
-    const menuItemId = useSelector((state) => {
-        if(selectmenuId === "state") {
-            return state.statesMenuItemId
-        } else if(selectmenuId === "department") {
-            return state.departmentMenuItemId
-        } else{
-            return null
-        }
-    });
-
-    function setUiStateActiveTab(isClassActiveTab, index) {
-        isClassActiveTab[index]='ui-state-active';
-        return isClassActiveTab
-    }
-
-    const list = setListData(selectmenuId);
-
+function setUiStateActiveTab(listItems, index) {
     let isClassActiveTab = [];
-    for(let i=0; i<list.length; i++) {
+    for(let i=0; i<listItems.length; i++) {
         isClassActiveTab.push('')
     }
+    isClassActiveTab[index]='ui-state-active';
+    return isClassActiveTab
+}
 
-    const uiStateActiveTab = setUiStateActiveTab(isClassActiveTab, index);
 
-    const listStyle = giveListStyle(selectmenuId);
-    
-    return isSelectMenuOpen ? (
+function switchMenuParameters(isOpen) {
+    if(isOpen === true) {
+        return {
+            class: 'ui-selectmenu-menu ui-front ui-selectmenu-open',
+            ariaHidden: false,
+        }
+    } 
+    return {
+        class: 'ui-selectmenu-menu ui-front',
+        ariaHidden: true,
+    }
+}
+
+
+function ListItems({ isOpen, listItems, indexMenuItemFocused, setIsOpen, setMenuItemId, setMenuItemIdSelected, setMenuItemNameSelected, setIndexMenuItemFocused, setIndex }) {
+    /**
+     * uiStateActiveTab: provides a tab of elements, which are the class of each items of a list.
+     *                   It provides for each item a class uiStateActiveTab(index) = ''/'ui-state-active'
+     */
+    const uiStateActiveTab = setUiStateActiveTab(listItems, indexMenuItemFocused);
+    return isOpen ? (
+        listItems.map((listElement, index) => (
+            <li 
+                key={'ui-id-'+ index} 
+                className='ui-menu-item'
+            >
+                <div 
+                    id={'ui-id-' + index} 
+                    className={'ui-menu-item-wrapper ' + uiStateActiveTab[index]}
+                    tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                    role='option'
+                    aria-selected={false} // indicates the current "selected" state of various widgets
+                    onMouseEnter={() => {
+                        setIndexMenuItemFocused(index);
+                        setMenuItemId(index);
+                        setIndex(index)
+                    }}
+                    onClick={() => {
+                        setMenuItemIdSelected('ui-id-' + index);
+                        setMenuItemNameSelected(listItems[index]);
+                        setIsOpen(false);
+                    }}
+                >
+                    {listElement}
+                </div>
+            </li>
+        ))
+        
+    ) : (
+        listItems.map((listElement, index) => (
+            <li 
+                key={'ui-id-'+ index} 
+                className='ui-menu-item'
+            >
+                <div 
+                    id={'ui-id-'+ index}
+                    className='ui-menu-item-wrapper'
+                    tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                    role='option'
+                    aria-selected={false} // indicates the current "selected" state of various widgets
+                >
+                    {listElement.name}
+                </div>
+            </li>
+        ))
+    )
+}
+
+
+export default function DrawMenu({ ids, isOpen, listStyle, menuItemId, listItems, indexMenuItemFocused, setIsOpen, setMenuItemId, setMenuItemIdSelected, setMenuItemNameSelected, setIndexMenuItemFocused, setIndex }) {
+    const parameters = switchMenuParameters(isOpen)
+    return (
         <div 
-            className='ui-selectmenu-menu ui-front ui-selectmenu-open' // change ui-select-open ajouté
+            className={parameters.class}
             style = {listStyle}
         > 
             <ul 
@@ -94,77 +95,23 @@ export default function DrawMenu({ selectmenuId, ids }) {
                 }}
                 tabIndex={0} // makes the element focusable (0) or not (-1) for sequential focus navigation
                 role='listbox'
-                aria-hidden={false} // indicates whether the element is exposed to an accessibility API
+                aria-hidden={parameters.ariaHidden} // indicates whether the element is exposed to an accessibility API
                 aria-labelledby={ids.button} // identifies the element id selected
                 aria-activedescendant={menuItemId} // identifies the currently active element when focus is on a composite
                 aria-disabled={false} // state indicates that the element is perceivable but disabled, so it is not editable or otherwise operable
             >
-                {
-                    list.map((listElement, index) => (
-                        <li 
-                            key={'ui-id-'+ index} 
-                            className='ui-menu-item'
-                        >
-                            <div 
-                                id={'ui-id-' + index}
-                                className={'ui-menu-item-wrapper ' + uiStateActiveTab[index]} // change // ui-state-active en plus au survol
-                                tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
-                                role='option'
-                                aria-selected={false} // indicates the current "selected" state of various widgets
-                                onMouseEnter={() => {
-                                    dispatch(handleMouseEnter(selectmenuId, 'ui-id-' + index, index))
-                                }}
-                                onMouseLeave={() => {
-                                    dispatch(handleMouseLeave(selectmenuId, index))
-                                }}
-                                onClick={() => {
-                                    dispatch(setMenuItemIdSelected(selectmenuId, 'ui-id-' + index, list[index].name))
-                                }}
-                            >
-                                {listElement.name}
-                            </div>
-                        </li>
-                    ))
-                }
+                <ListItems 
+                    isOpen={isOpen} 
+                    listItems={listItems} 
+                    indexMenuItemFocused={indexMenuItemFocused}
+                    setIsOpen={setIsOpen}
+                    setMenuItemId={setMenuItemId} 
+                    setMenuItemIdSelected={setMenuItemIdSelected} 
+                    setMenuItemNameSelected={setMenuItemNameSelected} 
+                    setIndexMenuItemFocused={setIndexMenuItemFocused}
+                    setIndex={setIndex}
+                />
             </ul>
         </div>
-    ) : (
-        <div 
-            className='ui-selectmenu-menu ui-front'
-            style = {listStyle}
-        > 
-            <ul 
-                id={ids.menu}
-                className='ui-menu ui-corner-bottom ui-widget ui-widget-content'
-                style = {{
-                    width: 256
-                }}
-                tabIndex={0} // makes the element focusable (0) or not (-1) for sequential focus navigation
-                role='listbox'
-                aria-hidden={true} // indicates whether the element is exposed to an accessibility API
-                aria-labelledby={ids.button} // identidies the element id selected
-                aria-activedescendant={menuItemId} // identifies the currently active element when focus is on a composite
-                aria-disabled={false} // state indicates that the element is perceivable but disabled, so it is not editable or otherwise operable
-            >
-                {
-                    list.map((listElement, index) => (
-                        <li 
-                            key={'ui-id-'+ index} 
-                            className='ui-menu-item'
-                        >
-                            <div 
-                                id={'ui-id-'+ index}
-                                className='ui-menu-item-wrapper'
-                                tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
-                                role='option'
-                                aria-selected={false} // indicates the current "selected" state of various widgets
-                            >
-                                {listElement.name}
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
-        </div>
-    )  
+    ) 
 }

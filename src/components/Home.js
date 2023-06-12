@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { openModal, setUserData } from "./Store.js";
+import { states } from '../data/states.js'
+//import { departments } from '../data/departments.js'
 import '../styles/Home/Home.css'
+import '../styles/Modal/Modal.css'
 import '../styles/SelectMenu/SelectMenu.css'
 import Modal from './Modal.js';
 import SelectMenu from './SelectMenu.js';
@@ -15,10 +18,10 @@ export default function Home() {
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [startDate, setStartDate] = useState('');
-    const department = useSelector((state) => state.departmentMenuItemNameSelected);
+    //const department = useSelector((state) => state.departmentMenuItemNameSelected);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
-    const state = useSelector((state) => state.statesMenuItemNameSelected);
+    //const state = useSelector((state) => state.statesMenuItemNameSelected);
     const [zipCode, setZipCode] = useState('');
     return(
         <React.Fragment>
@@ -75,7 +78,24 @@ export default function Home() {
                         />
 
                         <label htmlFor="state">State</label>
-                        <SelectMenu selectmenuId={"state"} />
+                        <select name="state" id="state" style={{display: 'none'}}>
+                            {
+                                states.map((state, index) => (
+                                    <option key={`${state}-${index}`} value={state.abbreviation}>
+                                        {state.name}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                        <SelectMenu 
+                            selectmenuId={"state"}  
+                            listStyle={
+                                {
+                                    top: 679.5,
+                                    left: 630
+                                }
+                            } 
+                        />
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input 
@@ -86,7 +106,23 @@ export default function Home() {
                     </fieldset>
 
                     <label htmlFor="department">Department</label>
-                    <SelectMenu selectmenuId={"department"} />
+                    <select name="department" id="department" style={{display: 'none'}}>
+                        <option>Sales</option>
+                        <option>Marketing</option>
+                        <option>Engineering</option>
+                        <option>Human Resources</option>
+                        <option>Legal</option>
+                    </select>
+                    <SelectMenu 
+                        selectmenuId={"department"}
+                        listStyle={
+                            {
+                                top: 833.9,
+                                left: 614.4
+                            }
+                        }
+                    />
+
                 </form>
 
                 <button 
@@ -98,10 +134,10 @@ export default function Home() {
                             'lastName': lastName,
                             'dateOfBirth': dateOfBirth,
                             'startDate': startDate,
-                            'department': department,
+                            //'department': department,
                             'street': street,
                             'city': city,
-                            'state': state,
+                            //'state': state,
                             'zipCode': zipCode
                         }
                         dispatch(setUserData(userData));

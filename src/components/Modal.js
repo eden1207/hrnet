@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import '../styles/Home/Home.css'
-import '../styles/Modal/Modal.css'
+//import '../styles/Modal/Modal.css'
 import { closeModal } from './Store';
 
 

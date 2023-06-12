@@ -4,28 +4,11 @@ import { createStore } from "redux";
 const initialState = {
   isModalOpen: false,
 
-  //isSelectMenuButtonOpen: false,
-  //isSelectMenuOpen: false,
+  numberOfMenuItems: [],
+  tab: 0,
+  tab2: 0,
 
-  //listName: '',
 
-  isSelectStateMenuButtonOpen: false,
-  isSelectStateMenuOpen: false,
-
-  isSelectDepartmentMenuButtonOpen: false,
-  isSelectDepartmentMenuOpen: false,
-
-  isClassActive: '',
-
-  statesIndex: '',
-  statesMenuItemId: 'ui-id-0',
-  statesMenuItemIdSelected: 'ui-id-0',
-  statesMenuItemNameSelected: 'Alabama',
-
-  departmentIndex: '',
-  departmentMenuItemId: 'ui-id-0',
-  departmentMenuItemIdSelected: 'ui-id-0',
-  departmentMenuItemNameSelected: 'Sales',
   
   userData: {},
 };
@@ -36,40 +19,13 @@ export const openModal = () => ({ type: "openModal" });
 
 export const closeModal = () => ({ type: "closeModal" });
 
-/*export const setListName = (listName) => ({ 
-  type: "setListName",
-  listName: listName, 
-});*/
 
-export const openSelectMenu = (listName) => ({ 
-  type: "openSelectMenu",
-  listName: listName,  
-});
 
-export const closeSelectMenu = (listName) => ({ 
-  type: "closeSelectMenu",
-  listName: listName,  
-});
 
-export const handleMouseEnter = (listName, menuItemId, index) => ({ 
-  type: "handleMouseEnter", 
-  listName: listName,
-  menuItemId: menuItemId,
-  index: index,
-});
+export const setMenusItemsIndex = () => ({ type: "setMenusItemsIndex" });
 
-export const handleMouseLeave = (listName, index) => ({ 
-  type: "handleMouseLeave",
-  listName: listName,
-  index: index, 
-});
+export const sendIndex = () => ({ type: "sendIndex" });
 
-export const setMenuItemIdSelected = (listName, menuItemIdSelected, menuItemNameSelected) => ({ 
-  type: "setMenuItemIdSelected",
-  listName: listName, 
-  menuItemNameSelected: menuItemNameSelected,
-  menuItemIdSelected: menuItemIdSelected,
-});
 
 export const setUserData = (userData) => ({ 
   type: "setUserData",
@@ -77,112 +33,31 @@ export const setUserData = (userData) => ({
 });
 
 function reducer(state = initialState, action) {
-  /*if (action.type === "setListName") {
-    const listName = action.listName;
+
+
+  if (action.type === "setMenusItemsIndex") {
+    let tab = state.tab;
+    tab+=1;
     return {
       ...state,
-      listName: listName,
+      tab: tab,
     };
-  }*/
-  if (action.type === "openSelectMenu") {
-    const listName = action.listName;
-    if(listName === "state") {
-      return {
-        ...state,
-        isSelectStateMenuButtonOpen: true,
-        isSelectStateMenuOpen: true,
-      };
-    } else if (listName === "department") {
-      return {
-        ...state,
-        isSelectDepartmentMenuButtonOpen: true,
-        isSelectDepartmentMenuOpen: true,
-      };
-    }
-  }
-  if (action.type === "closeSelectMenu") {
-    const listName = action.listName;
-    if(listName === "state") {
-      return {
-        ...state,
-        isSelectStateMenuButtonOpen: false,
-        isSelectStateMenuOpen: false,
-      };
-    } else if (listName === "department") {
-      return {
-        ...state,
-        isSelectDepartmentMenuButtonOpen: false,
-        isSelectDepartmentMenuOpen: false,
-      };
-    }
   }
 
-  if (action.type === "handleMouseEnter") {
-    const listName = action.listName;
-    const menuItemId = action.menuItemId;
-    const index = action.index;
-    if(listName === "state") {
-      return {
-        ...state,
-        isClassActive: 'ui-state-active',
-        statesMenuItemId: menuItemId,
-        statesIndex: index,
-      };
-    } else if (listName === "department") {
-      return {
-        ...state,
-        isClassActive: 'ui-state-active',
-        departmentMenuItemId: menuItemId,
-        departmentIndex: index,
-      };
-    }
-  }
-  if (action.type === "handleMouseLeave") {
-    const listName = action.listName;
-    const index = action.index;
-    if(listName === "state") {
-      return {
-        ...state,
-        isClassActive: '',
-        statesIndex: index,
-      };
-    } else if (listName === "department") {
-      return {
-        ...state,
-        isClassActive: '',
-        departmentIndex: index,
-      };
-    }
-  }
-
-
-  /*if (action.type === "setMenuItemIdSelected") {
-    const menuItemNameSelected = action.menuItemNameSelected;
-    const menuItemIdSelected = action.menuItemIdSelected;
+  if (action.type === "sendIndex") {
+    //let tab2 = action.tab2;
+    let tab2 = state.tab2;
+    tab2+=1;
     return {
       ...state,
-      menuItemNameSelected: menuItemNameSelected,
-      menuItemIdSelected: menuItemIdSelected,
+      tab2: tab2,
     };
-  }*/
-  if (action.type === "setMenuItemIdSelected") {
-    const listName = action.listName;
-    const menuItemNameSelected = action.menuItemNameSelected;
-    const menuItemIdSelected = action.menuItemIdSelected;
-    if(listName === "state") {
-      return {
-        ...state,
-        statesMenuItemNameSelected: menuItemNameSelected,
-        statesMenuItemIdSelected: menuItemIdSelected,
-      };
-    } else if (listName === "department") {
-      return {
-        ...state,
-        departmentMenuItemNameSelected: menuItemNameSelected,
-        departmentMenuItemIdSelected: menuItemIdSelected,
-      };
-    }
   }
+
+
+
+
+
   if (action.type === "openModal") {
     return {
       ...state,
