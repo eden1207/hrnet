@@ -2,18 +2,29 @@ import { createStore } from "redux";
 
 // state
 const initialState = {
+  isHomePage: true,
+
   isModalOpen: false,
 
   numberOfMenuItems: [],
   tab: 0,
   tab2: 0,
 
+  firstIndex: [],
+  data: [],
+
 
   
-  userData: {},
+  //userData: data,
+  category: '',
 };
 
 // actions
+
+export const switchHeader = (page) => ({ 
+  type: "switchHeader",
+  page: page, 
+});
 
 export const openModal = () => ({ type: "openModal" });
 
@@ -22,9 +33,20 @@ export const closeModal = () => ({ type: "closeModal" });
 
 
 
+
 export const setMenusItemsIndex = () => ({ type: "setMenusItemsIndex" });
 
 export const sendIndex = () => ({ type: "sendIndex" });
+
+export const setFirstIndex = (number) => ({ 
+  type: "setFirstIndex",
+  number: number, 
+});
+
+export const setData = (selectmenuId) => ({ 
+  type: "setData",
+  selectmenuId: selectmenuId, 
+});
 
 
 export const setUserData = (userData) => ({ 
@@ -58,6 +80,49 @@ function reducer(state = initialState, action) {
 
 
 
+  if (action.type === "setFirstIndex") {
+    const number = action.number;
+    let firstIndex = state.firstIndex;
+    firstIndex.push(number);
+    return {
+      ...state,
+      firstIndex: firstIndex,
+    };
+  }
+
+  if (action.type === "setData") {
+    const selectmenuId = action.selectmenuId;
+    const selectMenu = document.getElementById(selectmenuId);
+    let tab = state.data;
+    for (let i = 0; i < selectMenu.length; i++) {
+        tab.push(selectMenu.options[i].text);
+    }
+    return {
+      ...state,
+      data: tab,
+    };
+  }
+
+
+
+
+
+
+
+
+  if (action.type === "switchHeader") {
+    const page = action.page;
+    if(page === 'home') {
+      return {
+        ...state,
+        isHomePage: true,
+      };
+    }
+    return {
+      ...state,
+      isHomePage: false,
+    };
+  }
   if (action.type === "openModal") {
     return {
       ...state,

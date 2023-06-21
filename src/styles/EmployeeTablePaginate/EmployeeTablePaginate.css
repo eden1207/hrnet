@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap");
+.paginate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+
+.paginate-btn-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-family: "EB Garamond", serif;
+  font-size: 38px;
+  font-weight: normal;
+  color: rgb(89, 111, 11);
+  filter: brightness(0.55);
+}
+
+.paginate-btn-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(89, 111, 11);
+  border: none;
+  cursor: pointer;
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: white;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.paginate-btn-number:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: none;
+  cursor: pointer;
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: white;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}/*# sourceMappingURL=EmployeeTablePaginate.css.map */

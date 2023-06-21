@@ -1,0 +1,60 @@
+@import "../Mixins/Mixin";
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /*background-color: rgb(220 220 220 / 50%);*/
+    background-color: rgb(0 0 0 / 5%);
+    box-shadow: 1px 1px 15px rgb(0 0 0 / 30%);
+    width: 100%;
+    margin-bottom: 40px;
+    column-gap: 20%;
+}
+
+.main-nav-logo-image {
+    width: 120px;
+    height: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    @include syntaxe-garamond(38px, normal);
+    color: rgb(89 111 11);
+    filter: brightness(0.55);
+}
+
+.nav-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+    line-height: 18px;
+}
+
+.nav-btn:hover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+    line-height: 18px;
+}
+
+.nav-btn-text {
+    @include syntaxe-garamond(16px, normal);
+    color: black;
+    /*color: rgb(89 111 11);
+    filter: brightness(0.25);*/
+}
+
+.nav-btn-logo {
+    @include syntaxe-garamond(26px, normal);
+    color: black;
+    /*color: rgb(89 111 11);
+    filter: brightness(0.75);*/
+}

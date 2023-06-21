@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap");
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /*background-color: rgb(220 220 220 / 50%);*/
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  margin-bottom: 40px;
+  -moz-column-gap: 20%;
+       column-gap: 20%;
+}
+
+.main-nav-logo-image {
+  width: 120px;
+  height: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-family: "EB Garamond", serif;
+  font-size: 38px;
+  font-weight: normal;
+  color: rgb(89, 111, 11);
+  filter: brightness(0.55);
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  line-height: 18px;
+}
+
+.nav-btn:hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  line-height: 18px;
+}
+
+.nav-btn-text {
+  font-family: "EB Garamond", serif;
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+  /*color: rgb(89 111 11);
+  filter: brightness(0.25);*/
+}
+
+.nav-btn-logo {
+  font-family: "EB Garamond", serif;
+  font-size: 26px;
+  font-weight: normal;
+  color: black;
+  /*color: rgb(89 111 11);
+  filter: brightness(0.75);*/
+}/*# sourceMappingURL=Header.css.map */

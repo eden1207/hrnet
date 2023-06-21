@@ -19,4 +19,21 @@ label {
 
 .address {
   margin-top: 10px;
+}
+
+/*-- My CSS code added --*/
+.employees-page-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+.employees-page-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 40px;
 }/*# sourceMappingURL=Employee.css.map */

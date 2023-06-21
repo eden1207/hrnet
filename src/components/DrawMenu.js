@@ -80,7 +80,7 @@ function ListItems({ isOpen, listItems, indexMenuItemFocused, setIsOpen, setMenu
 }
 
 
-export default function DrawMenu({ ids, isOpen, listStyle, menuItemId, listItems, indexMenuItemFocused, setIsOpen, setMenuItemId, setMenuItemIdSelected, setMenuItemNameSelected, setIndexMenuItemFocused, setIndex }) {
+export default function DrawMenu({ ids, isOpen, listStyle, menuItemId, listItems, indexMenuItemFocused, setIsOpen, setMenuItemId, setMenuItemIdSelected, setMenuItemNameSelected, setIndexMenuItemFocused, setIndex, offset }) {
     const parameters = switchMenuParameters(isOpen)
     return (
         <div 
@@ -110,6 +110,7 @@ export default function DrawMenu({ ids, isOpen, listStyle, menuItemId, listItems
                     setMenuItemNameSelected={setMenuItemNameSelected} 
                     setIndexMenuItemFocused={setIndexMenuItemFocused}
                     setIndex={setIndex}
+                    offset={offset}
                 />
             </ul>
         </div>

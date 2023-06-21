@@ -1,0 +1,104 @@
+@import "../Mixins/Mixin";
+
+.main-table {
+    /*overflow-x: auto;*/
+    background-color: rgb(89 111 11 / 70%);
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 30%);
+    /*width: 90%;*/
+    width: 1300px;
+    height: none;
+    margin-bottom: 20px;
+    border-bottom: 1px black solid;
+}
+
+.scroll-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    overflow-x: auto;
+}
+
+.column-content {
+    height: 50px;
+    border-bottom: 1px black solid;
+    cursor: pointer;
+}
+
+.column-title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.column-title {
+    @include syntaxe-garamond(18px, bold);
+    color: white;
+}
+
+.arrowWhite {
+    color: white;
+}
+
+.columnSelectedColor{
+    background-color: rgb(0 0 0 / 10%);
+}
+
+.errorMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include syntaxe-garamond(18px, normal);
+    width: 100%;
+}
+
+.errorMessage1{
+    width: 200%;
+    border: 1px red solid;
+}
+
+.errorMessage1{
+    width: 100%;
+    border: 1px green solid;
+}
+
+.column-title-arrows{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-title-single-arrow{
+    border: none;
+    background-color: rgb(255 255 255 / 0%);
+    cursor: pointer;
+    color: rgb(255 255 255 / 30%);
+}
+
+.row-information {
+    @include syntaxe-garamond(16px, normal);
+    height: 40px;
+}
+
+.row-information-text {
+    padding-left: 15px;
+}
+
+.odd {
+    background-color: rgb(255 255 255 / 100%);
+}
+
+.odd:hover {
+    background-color: rgb(255 255 255 / 70%);
+}
+
+.even {
+    background-color: rgb(255 255 255 / 70%);
+}
+
+.even:hover {
+    background-color: rgb(255 255 255 / 70%);
+}

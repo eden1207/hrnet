@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap");
+.main-table {
+  /*overflow-x: auto;*/
+  background-color: rgba(89, 111, 11, 0.7);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  /*width: 90%;*/
+  width: 1300px;
+  height: none;
+  margin-bottom: 20px;
+  border-bottom: 1px black solid;
+}
+
+.scroll-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  overflow-x: auto;
+}
+
+.column-content {
+  height: 50px;
+  border-bottom: 1px black solid;
+  cursor: pointer;
+}
+
+.column-title-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.column-title {
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.arrowWhite {
+  color: white;
+}
+
+.columnSelectedColor {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  font-weight: normal;
+  width: 100%;
+}
+
+.errorMessage1 {
+  width: 200%;
+  border: 1px red solid;
+}
+
+.errorMessage1 {
+  width: 100%;
+  border: 1px green solid;
+}
+
+.column-title-arrows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-title-single-arrow {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.row-information {
+  font-family: "EB Garamond", serif;
+  font-size: 16px;
+  font-weight: normal;
+  height: 40px;
+}
+
+.row-information-text {
+  padding-left: 15px;
+}
+
+.odd {
+  background-color: rgb(255, 255, 255);
+}
+
+.odd:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.even {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.even:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}/*# sourceMappingURL=EmployeeTable.css.map */

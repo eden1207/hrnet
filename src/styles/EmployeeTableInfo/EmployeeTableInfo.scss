@@ -1,0 +1,8 @@
+@import "../Mixins/Mixin";
+
+
+.dataTables-info {
+    @include syntaxe-garamond(18px, normal);
+    color: rgb(89 111 11);
+    filter: brightness(0.45);
+}

@@ -681,7 +681,8 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-selectmenu-menu {
 	padding: 0;
-	margin: 0;
+	/*margin: 0;*/
+	margin-top: 142px; /*I made the previous line silent to add this one*/
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1309,3 +1310,6 @@ a.ui-button:active,
 	-webkit-box-shadow: 0px 0px 5px #666666;
 	box-shadow: 0px 0px 5px #666666;
 }
+
+
+/* My adding */

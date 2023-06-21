@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { openModal, setUserData } from "./Store.js";
 import { states } from '../data/states.js'
-//import { departments } from '../data/departments.js'
 import '../styles/Home/Home.css'
 import '../styles/Modal/Modal.css'
 import '../styles/SelectMenu/SelectMenu.css'
 import Modal from './Modal.js';
 import SelectMenu from './SelectMenu.js';
+import DatePicker from './DatePicker.js';
+import Header from './Header.js';
 
 
 
@@ -16,6 +16,7 @@ export default function Home() {
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    //const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [startDate, setStartDate] = useState('');
     //const department = useSelector((state) => state.departmentMenuItemNameSelected);
@@ -23,15 +24,17 @@ export default function Home() {
     const [city, setCity] = useState('');
     //const state = useSelector((state) => state.statesMenuItemNameSelected);
     const [zipCode, setZipCode] = useState('');
+
+    //const [selectedDate, setSelectedDate] = useState(null);
+    //const [date, setDate] = useState(new Date());
+    console.log(dateOfBirth)
+    console.log(startDate)
     return(
         <React.Fragment>
-            <div className="title">
-                <h1>HRnet</h1>
-            </div>
+            <Header />
             <div className="container">
-                <Link to={'/employee'}>View Current Employees</Link>
-                <h2>Create Employee</h2>
-                <form action="#" id="create-employee">
+                <h2 className="form-title">Create Employee</h2>
+                <form action="#" id="create-employee" className='form-content'>
                     <label htmlFor="first-name">First Name</label>
                     <input 
                         type="text" 
@@ -47,20 +50,12 @@ export default function Home() {
                     />
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <input 
-                        id="date-of-birth" 
-                        type="text" 
-                        onChange={(e) => {setDateOfBirth(e.target.value)}} 
-                    />
+                    <DatePicker date={dateOfBirth} setDate={setDateOfBirth} />
 
                     <label htmlFor="start-date">Start Date</label>
-                    <input 
-                        id="start-date" 
-                        type="text" 
-                        onChange={(e) => {setStartDate(e.target.value)}} 
-                    />
+                    <DatePicker date={startDate} setDate={setStartDate} />
 
-                    <fieldset className="address">
+                    <fieldset className="address address-content">
                         <legend>Address</legend>
 
                         <label htmlFor="street">Street</label>
@@ -126,6 +121,7 @@ export default function Home() {
                 </form>
 
                 <button 
+                    className='form-btn'
                     type='button' 
                     onClick={(e) => {
                         e.preventDefault();
@@ -151,3 +147,20 @@ export default function Home() {
         </React.Fragment>
     )
 }
+
+
+/**
+ *                     <input 
+                        id="date-of-birth" 
+                        type="text" 
+                        onChange={(e) => {setDateOfBirth(e.target.value)}} 
+                    />
+ */
+
+/**
+ *                     <input 
+                        id="start-date" 
+                        type="text" 
+                        onChange={(e) => {setStartDate(e.target.value)}} 
+                    />
+ */

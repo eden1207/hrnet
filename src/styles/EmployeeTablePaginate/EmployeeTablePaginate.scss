@@ -1,0 +1,51 @@
+@import "../Mixins/Mixin";
+
+
+.paginate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+.paginate-btn-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 0%);
+    border: none;
+    cursor: pointer;
+    @include syntaxe-garamond(38px, normal);
+    color: rgb(89 111 11 / 100%);
+    filter: brightness(0.55);
+}
+
+.paginate-btn-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(89 111 11 / 100%);
+    border: none;
+    cursor: pointer;
+    @include syntaxe-garamond(18px, normal);
+    color: white;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 80%);
+}
+
+.paginate-btn-number:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 90%);
+    border: none;
+    cursor: pointer;
+    @include syntaxe-garamond(18px, normal);
+    color: white;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 80%);
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import { setMenusItemsIndex, sendIndex } from "./Store.js";
+import { useDispatch } from "react-redux";
+import { setMenusItemsIndex, sendIndex, setFirstIndex } from "./Store.js";
 import DrawButton from './DrawButton.js';
 import DrawMenu from './DrawMenu.js';
 
@@ -14,8 +14,10 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
     };
     const dispatch = useDispatch();
 
+    // useEffect pour la récupération des éléments du menu select à partir de son id
     useEffect(() => {
         const selectMenu = document.getElementById(selectmenuId);
+        console.log(selectMenu)
         let tab = [];
         for (let i = 0; i < selectMenu.length; i++) {
             tab.push(selectMenu.options[i].text);
@@ -41,38 +43,21 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
     const [menuItemNameSelected, setMenuItemNameSelected] = useState(listItems[0]);
     const [indexMenuItemFocused, setIndexMenuItemFocused] = useState(0);
 
-    const listIndex = useSelector((state) => state.tab);
-    let tab2=[];
-    for(let i=1; i<listIndex; i++) {
-        tab2.push(i);
-    }
-    //dispatch(sendIndex(tab2));
-    //const tab3 = useSelector((state) => state.tab2);
-    //console.log(listIndex)
-    //console.log(selectmenuId)
 
-    const listIndex2 = useSelector((state) => state.tab2);
-    //console.log(listIndex2)
-
-    function test(listItems, tab2) {
-        let tab3 = [];
-        for(let i=0; i<listItems.length; i++) {
-            tab3.push(tab2[i]);
-            tab2.splice(i, 1);
-        }
-        //return [tab2, tab3]
-        return tab2
+    //let firstIndex = useSelector((state) => state.firstIndex);
+    if(listItems.length !== 0) {
+        dispatch(setFirstIndex(listItems.length))
     }
 
-    const res = test(listItems, tab2);
-    //console.log(res)
+    //const offset = firstIndex.reduce((a, b) => a + b, 0) - listItems.length + 1;
+    //console.log('Element de ' + selectmenuId+ ': ' + offset);
 
 
 
 
 
 
-
+    // useEffect pour la navigation clavier
     useEffect(() => {
         document.addEventListener('keydown', detectKeydown);
     });
@@ -233,7 +218,6 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
         }
     }
 
-
     return (
         <React.Fragment>
             <DrawButton 
@@ -242,7 +226,7 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
                 menuItemId={menuItemId} 
                 menuItemIdSelected={menuItemIdSelected} 
                 menuItemNameSelected={menuItemNameSelected} 
-                setIsOpen={setIsOpen} 
+                setIsOpen={setIsOpen}
             />
             <DrawMenu 
                 ids={ids} 

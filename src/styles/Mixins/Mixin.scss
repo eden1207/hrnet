@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap');
+
+@mixin padding-package($top, $bottom, $left, $right) {
+    padding-top: $top !important;
+    padding-bottom: $bottom !important;
+    padding-left: $left;
+    padding-right: $right;
+}
+
+@mixin margin-package($top, $bottom, $left, $right) {
+    margin-top: $top !important;
+    margin-bottom: $bottom !important;
+    margin-left: $left;
+    margin-right: $right;
+}
+
+@mixin syntaxe-garamond($size, $type) {
+    font-family: 'EB Garamond', serif;
+    font-size: $size;
+    font-weight: $type;
+}
+
+@mixin syntaxe-pompiere($size, $type) {
+    font-family: 'Pompiere', cursive;
+    font-size: $size;
+    font-weight: $type;
+}
+
+@mixin dimensions($width, $height) {
+    width: $width; 
+    height: $height !important;
+}
