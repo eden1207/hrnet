@@ -3,15 +3,13 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-export default function DatePicker({ date, setDate }) {
+export default function DatePicker({ id, date, setDate }) {
     const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
     return isDatePickerOpen ? (
-        <div>
+        <div className='calendar-position'>
             <Calendar 
-                //value={date} 
                 value={date}
                 onChange={(e) => {
-                    //setDate(e);
                     const year = e.getFullYear();
                     const month = e.getMonth()+1;
                     const day = e.getDate();
@@ -30,7 +28,7 @@ export default function DatePicker({ date, setDate }) {
     ) : (
         <div>
             <input 
-                id="date-of-birth" 
+                id={id}
                 type="text"
                 placeholder={date}
                 onChange={(e) => {

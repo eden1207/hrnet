@@ -4,10 +4,28 @@
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   color: black;
+}
+@media all and (min-width: 992px) {
+  .dataTables-length {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .dataTables-length {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .dataTables-length {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+  }
 }
 
 .number-entries {
@@ -19,16 +37,41 @@
   background-color: rgba(0, 0, 0, 0.88);
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  width: 70px;
-  height: none;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   color: white;
+}
+@media all and (min-width: 992px) {
+  .number-entries {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+    width: 70px;
+    height: none !important;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .number-entries {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 65px;
+    height: none !important;
+  }
+}
+@media all and (max-width: 767px) {
+  .number-entries {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 60px;
+    height: none !important;
+  }
 }
 
 .number-entries-open {
-  margin-bottom: -130px;
+  margin-top: none !important;
+  margin-bottom: -130px !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 .number-entries-btn {
@@ -37,14 +80,38 @@
   align-items: center;
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  border-radius: 10px;
-  width: 100%;
-  height: 40px;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   color: white;
   cursor: pointer;
+}
+@media all and (min-width: 992px) {
+  .number-entries-btn {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+    width: 100%;
+    height: 40px !important;
+    border-radius: 10px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .number-entries-btn {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 100%;
+    height: 38px !important;
+    border-radius: 8px;
+  }
+}
+@media all and (max-width: 767px) {
+  .number-entries-btn {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    height: 34px !important;
+    border-radius: 6px;
+  }
 }
 
 .number-entries-list {
@@ -54,9 +121,11 @@
   align-items: center;
   list-style-type: none;
   width: 100%;
-  height: 120px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  height: 120px !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 .number-entries-list-element {
@@ -64,6 +133,10 @@
   justify-content: center;
   align-items: center;
   width: 50%;
+  height: none !important;
+  margin-top: none !important;
+  margin-bottom: none !important;
+  margin-left: none;
   margin-right: 70%;
   cursor: pointer;
 }/*# sourceMappingURL=ShowNumberEntries.css.map */

@@ -1,0 +1,28 @@
+$nombre_de_translations: 6;
+$pas_retard_translation: 200ms;
+
+@for $i from 1 through $nombre_de_translations{
+  .translation#{$i}{
+      animation: translation 500ms linear;
+      animation-delay: $i*$pas_retard_translation;
+      animation-fill-mode: backwards;
+  }
+}
+
+
+@keyframes translation{
+    0%{
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    50%{
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}

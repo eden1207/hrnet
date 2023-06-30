@@ -3,7 +3,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 200px;
+  width: auto;
+  height: none !important;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 
 .paginate-btn-arrow {
@@ -11,30 +14,94 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
+  filter: brightness(0.55);
   border: none;
   cursor: pointer;
-  font-family: "EB Garamond", serif;
-  font-size: 38px;
-  font-weight: normal;
+}
+@media all and (min-width: 992px) {
+  .paginate-btn-arrow {
+    font-family: "EB Garamond", serif;
+    font-size: 38px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .paginate-btn-arrow {
+    font-family: "EB Garamond", serif;
+    font-size: 34px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .paginate-btn-arrow {
+    font-family: "EB Garamond", serif;
+    font-size: 30px;
+    font-weight: normal;
+  }
+}
+
+.paginate-btn-prev-arrow-active-color {
   color: rgb(89, 111, 11);
-  filter: brightness(0.55);
+}
+
+.paginate-btn-prev-arrow-color {
+  color: rgba(89, 111, 11, 0.3);
+}
+
+.paginate-btn-next-arrow-active-color {
+  color: rgb(89, 111, 11);
+}
+
+.paginate-btn-next-arrow-color {
+  color: rgba(89, 111, 11, 0.3);
 }
 
 .paginate-btn-number {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(89, 111, 11);
   border: none;
   cursor: pointer;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   color: white;
-  border-radius: 10px;
-  width: 35px;
-  height: 35px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+@media all and (min-width: 992px) {
+  .paginate-btn-number {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+    width: 35px;
+    height: 35px !important;
+    border-radius: 10px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .paginate-btn-number {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 32px;
+    height: 32px !important;
+    border-radius: 8px;
+  }
+}
+@media all and (max-width: 767px) {
+  .paginate-btn-number {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 28px;
+    height: 28px !important;
+    border-radius: 6px;
+  }
+}
+
+.paginate-btn-number-selected-color {
+  background-color: black;
+}
+
+.paginate-btn-number-color {
+  background-color: rgb(89, 111, 11);
 }
 
 .paginate-btn-number:hover {
@@ -48,8 +115,35 @@
   font-size: 18px;
   font-weight: normal;
   color: white;
-  border-radius: 10px;
-  width: 35px;
-  height: 35px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+@media all and (min-width: 992px) {
+  .paginate-btn-number:hover {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+    width: 35px;
+    height: 35px !important;
+    border-radius: 10px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .paginate-btn-number:hover {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 32px;
+    height: 32px !important;
+    border-radius: 8px;
+  }
+}
+@media all and (max-width: 767px) {
+  .paginate-btn-number:hover {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 28px;
+    height: 28px !important;
+    border-radius: 6px;
+  }
 }/*# sourceMappingURL=EmployeeTablePaginate.css.map */

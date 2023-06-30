@@ -14,12 +14,17 @@
 
 label {
   display: block;
-  margin-top: 1rem;
-  margin-bottom: 10px;
+  margin-top: 1rem !important;
+  margin-bottom: 10px !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 .address {
-  margin-top: 10px;
+  margin-top: 10px !important;
+  margin-bottom: none !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 /*--My adding--*/
@@ -27,29 +32,71 @@ label {
   background-color: rgba(89, 111, 11, 0.35);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  width: 289px;
-  height: 680px;
-  padding-left: 190px;
-  padding-right: 190px;
-  padding-top: 20px;
-  padding-bottom: 40px;
   font-family: "EB Garamond", serif;
   font-size: 16px;
   font-weight: normal;
-  margin-bottom: 30px;
+  margin-top: none !important;
+  margin-bottom: 30px !important;
+  margin-left: none;
+  margin-right: none;
+}
+@media all and (min-width: 992px) {
+  .form-content {
+    width: 289px;
+    height: 680px !important;
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    padding-left: 190px;
+    padding-right: 190px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .form-content {
+    width: 249px;
+    height: 680px !important;
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    padding-left: 170px;
+    padding-right: 170px;
+  }
+}
+@media all and (max-width: 767px) {
+  .form-content {
+    width: 209px;
+    height: 680px !important;
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    padding-left: 20px;
+    padding-right: 100px;
+  }
 }
 
 .form-title {
-  font-family: "EB Garamond", serif;
-  font-size: 28px;
-  font-weight: normal;
-  /*color: rgb(89 111 11);*/
   color: black;
-  /*filter: brightness(0.55);*/
+}
+@media all and (min-width: 992px) {
+  .form-title {
+    font-family: "EB Garamond", serif;
+    font-size: 28px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .form-title {
+    font-family: "EB Garamond", serif;
+    font-size: 26px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .form-title {
+    font-family: "EB Garamond", serif;
+    font-size: 22px;
+    font-weight: normal;
+  }
 }
 
 .address-content {
-  /*background-color: rgb(0 0 0 / 5%);*/
   background-color: rgba(32, 178, 170, 0.4);
   border: 1px rgba(0, 0, 0, 0.5) solid;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
@@ -66,13 +113,51 @@ label {
   background-color: rgba(0, 0, 0, 0.9);
   border: none;
   cursor: pointer;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   color: white;
   border-radius: 10px;
-  width: 100px;
-  height: 40px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  margin-bottom: 50px;
+}
+@media all and (min-width: 992px) {
+  .form-btn {
+    margin-top: none !important;
+    margin-bottom: 50px !important;
+    margin-left: none;
+    margin-right: none;
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+    width: 100px;
+    height: 40px !important;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .form-btn {
+    margin-top: none !important;
+    margin-bottom: 40px !important;
+    margin-left: none;
+    margin-right: none;
+    font-family: "EB Garamond", serif;
+    font-size: 17px;
+    font-weight: normal;
+    width: 85px;
+    height: 35px !important;
+  }
+}
+@media all and (max-width: 767px) {
+  .form-btn {
+    margin-top: none !important;
+    margin-bottom: 25px !important;
+    margin-left: none;
+    margin-right: none;
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 70px;
+    height: 30px !important;
+  }
+}
+
+.calendar-position {
+  position: absolute;
+  z-index: 1;
 }/*# sourceMappingURL=Home.css.map */

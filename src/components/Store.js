@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+import { data } from '../data/data.js';
 
 // state
 const initialState = {
@@ -7,15 +8,12 @@ const initialState = {
   isModalOpen: false,
 
   numberOfMenuItems: [],
-  tab: 0,
-  tab2: 0,
 
-  firstIndex: [],
-  data: [],
+  data: data,
 
 
   
-  //userData: data,
+  //userData: [],
   category: '',
 };
 
@@ -34,19 +32,7 @@ export const closeModal = () => ({ type: "closeModal" });
 
 
 
-export const setMenusItemsIndex = () => ({ type: "setMenusItemsIndex" });
 
-export const sendIndex = () => ({ type: "sendIndex" });
-
-export const setFirstIndex = (number) => ({ 
-  type: "setFirstIndex",
-  number: number, 
-});
-
-export const setData = (selectmenuId) => ({ 
-  type: "setData",
-  selectmenuId: selectmenuId, 
-});
 
 
 export const setUserData = (userData) => ({ 
@@ -55,56 +41,6 @@ export const setUserData = (userData) => ({
 });
 
 function reducer(state = initialState, action) {
-
-
-  if (action.type === "setMenusItemsIndex") {
-    let tab = state.tab;
-    tab+=1;
-    return {
-      ...state,
-      tab: tab,
-    };
-  }
-
-  if (action.type === "sendIndex") {
-    //let tab2 = action.tab2;
-    let tab2 = state.tab2;
-    tab2+=1;
-    return {
-      ...state,
-      tab2: tab2,
-    };
-  }
-
-
-
-
-
-  if (action.type === "setFirstIndex") {
-    const number = action.number;
-    let firstIndex = state.firstIndex;
-    firstIndex.push(number);
-    return {
-      ...state,
-      firstIndex: firstIndex,
-    };
-  }
-
-  if (action.type === "setData") {
-    const selectmenuId = action.selectmenuId;
-    const selectMenu = document.getElementById(selectmenuId);
-    let tab = state.data;
-    for (let i = 0; i < selectMenu.length; i++) {
-        tab.push(selectMenu.options[i].text);
-    }
-    return {
-      ...state,
-      data: tab,
-    };
-  }
-
-
-
 
 
 
@@ -137,9 +73,12 @@ function reducer(state = initialState, action) {
   }
   if (action.type === "setUserData") {
     const userData = action.userData;
+    let data = state.data;
+    data.push(userData);
     return {
       ...state,
-      userData: userData,
+      //userData: userData,
+      data: data,
     };
   }
   return state;

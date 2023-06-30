@@ -5,18 +5,37 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 300px;
-    height: 35px;
     background-color: rgb(89 111 11 / 100%);
     box-shadow: 2px 2px 5px rgb(0 0 0 / 80%);
     border-radius: 50px;
-    padding-left: 10px;
     color: white;
-    @include syntaxe-garamond(20px, bold);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(20px, bold);
+        @include dimensions(300px, 35px);
+        @include padding-package(none, none, 10px, none);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(18px, bold);
+        @include dimensions(280px, 35px);
+        @include padding-package(none, none, 8px, none);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(16px, bold);
+        @include dimensions(260px, 35px);
+        @include padding-package(none, none, 6px, none);
+    }
 }
 
 .searchbar input {
-    padding-left: 10px;
+    @include padding-package(none, none, 10px, none);
     color: rgb(0 0 0 / 70%);
-    @include syntaxe-garamond(16px, bold);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(16px, bold);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(15px, bold);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(14px, bold);
+    }
 }

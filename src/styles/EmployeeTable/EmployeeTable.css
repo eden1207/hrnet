@@ -1,28 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap");
 .main-table {
-  /*overflow-x: auto;*/
   background-color: rgba(89, 111, 11, 0.7);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  /*width: 90%;*/
   width: 1300px;
-  height: none;
-  margin-bottom: 20px;
+  height: none !important;
   border-bottom: 1px black solid;
+  margin-top: none !important;
+  margin-bottom: 20px !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 .scroll-window {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 90%;
+  height: none !important;
   overflow-x: auto;
+}
+@media all and (min-width: 992px) {
+  .scroll-window {
+    margin-top: none !important;
+    margin-bottom: 10px !important;
+    margin-left: none;
+    margin-right: none;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .scroll-window {
+    margin-top: none !important;
+    margin-bottom: 20px !important;
+    margin-left: none;
+    margin-right: none;
+  }
+}
+@media all and (max-width: 767px) {
+  .scroll-window {
+    margin-top: none !important;
+    margin-bottom: 15px !important;
+    margin-left: none;
+    margin-right: none;
+  }
 }
 
 .column-content {
-  height: 50px;
   border-bottom: 1px black solid;
   cursor: pointer;
+}
+@media all and (min-width: 992px) {
+  .column-content {
+    width: none;
+    height: 50px !important;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .column-content {
+    width: none;
+    height: 45px !important;
+  }
+}
+@media all and (max-width: 767px) {
+  .column-content {
+    width: none;
+    height: 40px !important;
+  }
 }
 
 .column-title-box {
@@ -33,10 +76,28 @@
 }
 
 .column-title {
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: bold;
   color: white;
+}
+@media all and (min-width: 992px) {
+  .column-title {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .column-title {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+@media all and (max-width: 767px) {
+  .column-title {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
 }
 
 .arrowWhite {
@@ -51,20 +112,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  font-weight: normal;
   width: 100%;
+  height: none !important;
 }
-
-.errorMessage1 {
-  width: 200%;
-  border: 1px red solid;
+@media all and (min-width: 992px) {
+  .errorMessage {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+  }
 }
-
-.errorMessage1 {
-  width: 100%;
-  border: 1px green solid;
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .errorMessage {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .errorMessage {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+  }
 }
 
 .column-title-arrows {
@@ -81,15 +151,55 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
-.row-information {
-  font-family: "EB Garamond", serif;
-  font-size: 16px;
-  font-weight: normal;
-  height: 40px;
+@media all and (min-width: 992px) {
+  .row-information {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: none;
+    height: 40px !important;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .row-information {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: none;
+    height: 35px !important;
+  }
+}
+@media all and (max-width: 767px) {
+  .row-information {
+    font-family: "EB Garamond", serif;
+    font-size: 12px;
+    font-weight: normal;
+    width: none;
+    height: 30px !important;
+  }
 }
 
 .row-information-text {
+  padding-top: none !important;
+  padding-bottom: none !important;
   padding-left: 15px;
+  padding-right: none;
+}
+
+.row-information-text-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.row-information-text-selected-City {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.row-information-text-selected-State {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.row-information-text-selected-ZipCode {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .odd {

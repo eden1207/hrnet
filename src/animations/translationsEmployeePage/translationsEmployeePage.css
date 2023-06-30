@@ -1,0 +1,50 @@
+.translation1 {
+  animation: translation 500ms linear;
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+}
+
+.translation2 {
+  animation: translation 500ms linear;
+  animation-delay: 400ms;
+  animation-fill-mode: backwards;
+}
+
+.translation3 {
+  animation: translation 500ms linear;
+  animation-delay: 600ms;
+  animation-fill-mode: backwards;
+}
+
+.translation4 {
+  animation: translation 500ms linear;
+  animation-delay: 800ms;
+  animation-fill-mode: backwards;
+}
+
+.translation5 {
+  animation: translation 500ms linear;
+  animation-delay: 1000ms;
+  animation-fill-mode: backwards;
+}
+
+.translation6 {
+  animation: translation 500ms linear;
+  animation-delay: 1200ms;
+  animation-fill-mode: backwards;
+}
+
+@keyframes translation {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=translationsEmployeePage.css.map */

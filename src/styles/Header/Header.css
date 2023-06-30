@@ -3,28 +3,91 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /*background-color: rgb(220 220 220 / 50%);*/
   background-color: rgba(0, 0, 0, 0.05);
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
   width: 100%;
-  margin-bottom: 40px;
-  -moz-column-gap: 20%;
-       column-gap: 20%;
+  height: none !important;
+}
+@media all and (min-width: 992px) {
+  .main-nav {
+    margin-top: none !important;
+    margin-bottom: 40px !important;
+    margin-left: none;
+    margin-right: none;
+    -moz-column-gap: 20%;
+         column-gap: 20%;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .main-nav {
+    margin-top: none !important;
+    margin-bottom: 30px !important;
+    margin-left: none;
+    margin-right: none;
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+}
+@media all and (max-width: 767px) {
+  .main-nav {
+    margin-top: none !important;
+    margin-bottom: 20px !important;
+    margin-left: none;
+    margin-right: none;
+    -moz-column-gap: 2%;
+         column-gap: 2%;
+  }
 }
 
 .main-nav-logo-image {
-  width: 120px;
-  height: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  margin-left: none;
+  margin-right: none;
+}
+@media all and (min-width: 992px) {
+  .main-nav-logo-image {
+    width: 120px;
+    height: none !important;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .main-nav-logo-image {
+    width: 100px;
+    height: none !important;
+  }
+}
+@media all and (max-width: 767px) {
+  .main-nav-logo-image {
+    width: 60px;
+    height: none !important;
+  }
 }
 
 .main-title {
-  font-family: "EB Garamond", serif;
-  font-size: 38px;
-  font-weight: normal;
   color: rgb(89, 111, 11);
   filter: brightness(0.55);
+}
+@media all and (min-width: 992px) {
+  .main-title {
+    font-family: "EB Garamond", serif;
+    font-size: 38px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .main-title {
+    font-family: "EB Garamond", serif;
+    font-size: 32px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .main-title {
+    font-family: "EB Garamond", serif;
+    font-size: 18px;
+    font-weight: normal;
+  }
 }
 
 .nav-btn {
@@ -34,7 +97,21 @@
   align-items: center;
   text-decoration: none;
   text-align: center;
-  line-height: 18px;
+}
+@media all and (min-width: 992px) {
+  .nav-btn {
+    line-height: 18px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .nav-btn {
+    line-height: 16px;
+  }
+}
+@media all and (max-width: 767px) {
+  .nav-btn {
+    line-height: 10px;
+  }
 }
 
 .nav-btn:hover {
@@ -44,23 +121,69 @@
   align-items: center;
   text-decoration: none;
   text-align: center;
-  line-height: 18px;
+}
+@media all and (min-width: 992px) {
+  .nav-btn:hover {
+    line-height: 18px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .nav-btn:hover {
+    line-height: 16px;
+  }
+}
+@media all and (max-width: 767px) {
+  .nav-btn:hover {
+    line-height: 10px;
+  }
 }
 
 .nav-btn-text {
-  font-family: "EB Garamond", serif;
-  font-size: 16px;
-  font-weight: normal;
   color: black;
-  /*color: rgb(89 111 11);
-  filter: brightness(0.25);*/
+}
+@media all and (min-width: 992px) {
+  .nav-btn-text {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .nav-btn-text {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .nav-btn-text {
+    font-family: "EB Garamond", serif;
+    font-size: 10px;
+    font-weight: normal;
+  }
 }
 
 .nav-btn-logo {
-  font-family: "EB Garamond", serif;
-  font-size: 26px;
-  font-weight: normal;
   color: black;
-  /*color: rgb(89 111 11);
-  filter: brightness(0.75);*/
+}
+@media all and (min-width: 992px) {
+  .nav-btn-logo {
+    font-family: "EB Garamond", serif;
+    font-size: 26px;
+    font-weight: normal;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .nav-btn-logo {
+    font-family: "EB Garamond", serif;
+    font-size: 22px;
+    font-weight: normal;
+  }
+}
+@media all and (max-width: 767px) {
+  .nav-btn-logo {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: normal;
+  }
 }/*# sourceMappingURL=Header.css.map */

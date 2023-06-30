@@ -4,23 +4,46 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /*background-color: rgb(220 220 220 / 50%);*/
     background-color: rgb(0 0 0 / 5%);
     box-shadow: 1px 1px 15px rgb(0 0 0 / 30%);
-    width: 100%;
-    margin-bottom: 40px;
-    column-gap: 20%;
+    @include dimensions(100%, none);
+    @media all and (min-width: 992px) {
+        @include margin-package(none, 40px, none, none);
+        column-gap: 20%;
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include margin-package(none, 30px, none, none);
+        column-gap: 5%;
+    }
+    @media all and (max-width: 767px) {
+        @include margin-package(none, 20px, none, none);
+        column-gap: 2%;
+    }
 }
 
 .main-nav-logo-image {
-    width: 120px;
-    height: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    @media all and (min-width: 992px) {
+        @include dimensions(120px, none);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include dimensions(100px, none);
+    }
+    @media all and (max-width: 767px) {
+        @include dimensions(60px, none);
+    }
+    @include margin-package(10px, 10px, none, none);
 }
 
 .main-title {
-    @include syntaxe-garamond(38px, normal);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(38px, normal);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(32px, normal);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(18px, normal);
+    }
     color: rgb(89 111 11);
     filter: brightness(0.55);
 }
@@ -32,7 +55,15 @@
     align-items: center;
     text-decoration: none;
     text-align: center;
-    line-height: 18px;
+    @media all and (min-width: 992px) {
+        line-height: 18px;
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        line-height: 16px;
+    }
+    @media all and (max-width: 767px) {
+        line-height: 10px;
+    }
 }
 
 .nav-btn:hover {
@@ -42,19 +73,39 @@
     align-items: center;
     text-decoration: none;
     text-align: center;
-    line-height: 18px;
+    @media all and (min-width: 992px) {
+        line-height: 18px;
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        line-height: 16px;
+    }
+    @media all and (max-width: 767px) {
+        line-height: 10px;
+    }
 }
 
 .nav-btn-text {
-    @include syntaxe-garamond(16px, normal);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(16px, normal);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(14px, normal);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(10px, normal);
+    }
     color: black;
-    /*color: rgb(89 111 11);
-    filter: brightness(0.25);*/
 }
 
 .nav-btn-logo {
-    @include syntaxe-garamond(26px, normal);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(26px, normal);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(22px, normal);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(14px, normal);
+    }
     color: black;
-    /*color: rgb(89 111 11);
-    filter: brightness(0.75);*/
 }

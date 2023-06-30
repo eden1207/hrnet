@@ -1,3 +1,5 @@
+@import "../Mixins/Mixin";
+
 .title {
     display: flex;
     align-items: center;
@@ -14,28 +16,46 @@
 
 label {
     display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
+    @include margin-package(1rem, 10px, none, none);
 }
 
 .address {
-    margin-top: 10px;
+    @include margin-package(10px, none, none, none);
 }
 
 /*-- My CSS code added --*/
 
 .employees-page-banner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 90%;
-    margin-bottom: 20px;
+    @include dimensions(90%, none);
+    @include margin-package(none, 20px, none, none);
+    @media all and (min-width: 992px) {
+        justify-content: space-between;
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        justify-content: space-around;
+    }
+    @media all and (max-width: 767px) {
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 .employees-page-footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 90%;
-    margin-bottom: 40px;
+    @include dimensions(90%, none);
+    @include margin-package(none, 40px, none, none);
+    @media all and (min-width: 992px) {
+        justify-content: space-between;
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        justify-content: space-around;
+    }
+    @media all and (max-width: 767px) {
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 10px;
+    }
 }

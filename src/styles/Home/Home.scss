@@ -16,12 +16,11 @@
 
 label {
     display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
+    @include margin-package(1rem, 10px, none, none);
 }
 
 .address {
-    margin-top: 10px;
+    @include margin-package(10px, none, none, none);
 }
 
 /*--My adding--*/
@@ -30,25 +29,36 @@ label {
     background-color: rgb(89 111 11 / 35%);
     box-shadow: 5px 5px 10px rgb(0 0 0 / 30%);
     border-radius: 5px;
-    width: 289px;
-    height: 680px;
-    padding-left: 190px;
-    padding-right: 190px;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    @media all and (min-width: 992px) {
+        @include dimensions(289px, 680px);
+        @include padding-package(20px, 40px, 190px, 190px);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include dimensions(249px, 680px);
+        @include padding-package(20px, 40px, 170px, 170px);
+    }
+    @media all and (max-width: 767px) {
+        @include dimensions(209px, 680px);
+        @include padding-package(20px, 40px, 20px, 100px);
+    }
     @include syntaxe-garamond(16px, normal);
-    margin-bottom: 30px;
+    @include margin-package(none, 30px, none, none);
 }
 
 .form-title {
-    @include syntaxe-garamond(28px, normal);
-    /*color: rgb(89 111 11);*/
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(28px, normal);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(26px, normal);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(22px, normal);
+    }
     color:black;
-    /*filter: brightness(0.55);*/
 }
 
 .address-content {
-    /*background-color: rgb(0 0 0 / 5%);*/
     background-color: rgb(32 178 170 / 40%);
     border: 1px rgb(0 0 0 / 50%) solid;
     box-shadow: 1px 1px 5px rgb(0 0 0 / 40%);
@@ -63,11 +73,27 @@ label {
     background-color: rgb(0 0 0 / 90%);
     border: none;
     cursor: pointer;
-    @include syntaxe-garamond(18px, normal);
     color: white;
     border-radius: 10px;
-    width: 100px;
-    height: 40px;
     box-shadow: 2px 2px 5px rgb(0 0 0 / 80%);
-    margin-bottom: 50px;
+    @media all and (min-width: 992px) {
+        @include margin-package(none, 50px, none, none);
+        @include syntaxe-garamond(18px, normal);
+        @include dimensions(100px, 40px);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include margin-package(none, 40px, none, none);
+        @include syntaxe-garamond(17px, normal);
+        @include dimensions(85px, 35px);
+    }
+    @media all and (max-width: 767px) {
+        @include margin-package(none, 25px, none, none);
+        @include syntaxe-garamond(16px, normal);
+        @include dimensions(70px, 30px);
+    }
+}
+
+.calendar-position {
+    position: absolute;
+    z-index: 1;
 }

@@ -20,16 +20,16 @@ export default function Header() {
         }
     }, [dispatch]);
     return isHomePage ? (
-        <nav className="main-nav">
+        <nav className="main-nav translation1">
             <img
-                className="main-nav-logo-image"
+                className="main-nav-logo-image translation2"
                 src={logo}
                 alt="Wealth Health Logo"
             />
-            <h1 className="main-title">HRnet</h1>
+            <h1 className="main-title translation2">HRnet</h1>
             <Link 
                 to={'/employee'}
-                className="nav-btn"
+                className="nav-btn translation2"
                 onClick={() => {
                     dispatch(switchHeader('employees'))
                 }}
@@ -39,16 +39,16 @@ export default function Header() {
             </Link>
         </nav>
     ) : (
-        <nav className="main-nav">
+        <nav className="main-nav translation1">
             <img
-                className="main-nav-logo-image"
+                className="main-nav-logo-image translation2"
                 src={logo}
                 alt="Wealth Health Logo"
             />
-            <h1 className="main-title">Current Employees</h1>
+            <h1 className="main-title translation2">Current Employees</h1>
             <Link 
                 to={'/'}
-                className="nav-btn"
+                className="nav-btn translation2"
                 onClick={() => {
                     dispatch(switchHeader('home'))
                 }}

@@ -1,57 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from "react-redux";
-import { setMenusItemsIndex, sendIndex, setFirstIndex } from "./Store.js";
-import DrawButton from './DrawButton.js';
-import DrawMenu from './DrawMenu.js';
+import React, { useEffect, useState } from 'react';
 
 
-
-export default function SelectMenu({ selectmenuId, listStyle }) {
+export default function SelectMenu({ options, SelectMenuID, setData }) {
     const ids = {
-        element: selectmenuId,    
-        button: selectmenuId + "-button",
-        menu: selectmenuId + "-menu"
+        element: SelectMenuID,    
+        button: SelectMenuID + "-button",
+        menu: SelectMenuID + "-menu"
     };
-    const dispatch = useDispatch();
-
-    // useEffect pour la récupération des éléments du menu select à partir de son id
-    useEffect(() => {
-        const selectMenu = document.getElementById(selectmenuId);
-        console.log(selectMenu)
-        let tab = [];
-        for (let i = 0; i < selectMenu.length; i++) {
-            tab.push(selectMenu.options[i].text);
-
-            dispatch(setMenusItemsIndex())
-            dispatch(sendIndex());
-        }
-        setListItem(tab);
-    }, [selectmenuId, dispatch]);
 
     /**
      * isOpen: open/close the select menu
-     * listItems: provides the list of menu items to display
-     * menuItemId: id of the list item focused (for aria-descendant)
-     * menuItemIdSelected: id of the list item selected (for aria-labelledby)
-     * menuItemNameSelected: name of the list item selected
+     * indexMenuItemSelected: index of the list item selected
      * indexMenuItemFocused: index of the list item focused (to change his class on mousse enter/leave)
      */
     const [isOpen, setIsOpen] = useState(false);
-    const [listItems, setListItem] = useState([]);
-    const [menuItemId, setMenuItemId] = useState(0);
-    const [menuItemIdSelected, setMenuItemIdSelected] = useState(['ui-id-0']);
-    const [menuItemNameSelected, setMenuItemNameSelected] = useState(listItems[0]);
+    const [indexMenuItemSelected, setIndexMenuItemSelected] = useState(0);
     const [indexMenuItemFocused, setIndexMenuItemFocused] = useState(0);
 
-
-    //let firstIndex = useSelector((state) => state.firstIndex);
-    if(listItems.length !== 0) {
-        dispatch(setFirstIndex(listItems.length))
-    }
-
-    //const offset = firstIndex.reduce((a, b) => a + b, 0) - listItems.length + 1;
-    //console.log('Element de ' + selectmenuId+ ': ' + offset);
-
+    //const [isMounted, setIsMounted] = useState(true);
+    //const [count, setCount] = useState(0);
 
 
 
@@ -59,11 +26,19 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
 
     // useEffect pour la navigation clavier
     useEffect(() => {
-        document.addEventListener('keydown', detectKeydown);
+        //if(isMounted) {
+            document.addEventListener('keydown', detectKeydown);
+            //setIsMounted(false)
+            //setCount(count+1)
+            //return () => document.removeEventListener('keydown', detectKeydown);
+        //}
     });
 
-
-    let [index, setIndex] = useState(indexMenuItemFocused);
+    /*useEffect(() => {
+        if(!isMounted) {
+            setIsMounted(true)
+        }
+    });*/
 
     
     function detectKeydown(event) {
@@ -86,6 +61,7 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
             UP: 'ArrowUp'
         };
         let preventDefault = true;
+        let index = indexMenuItemFocused;
         switch (event.key) {
             case keyCode.TAB:
             case keyCode.ESCAPE:
@@ -105,8 +81,7 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
                 }*/
                 if(event.target.id === ids.button) {
                     if(isOpen === true) {
-                        setMenuItemIdSelected('ui-id-' + index);
-                        setMenuItemNameSelected(listItems[index]);
+                        setIndexMenuItemSelected(indexMenuItemFocused);
                         setIsOpen(false);
                     }
                 }
@@ -119,18 +94,15 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
                 }*/
                 if(event.target.id === ids.button) {
                     if(isOpen === true) {
+                        let index = indexMenuItemFocused;
                         if(index !== 0) {
                             index = index - 1;
-                            setIndex(index)
                             setIndexMenuItemFocused(index);
-                            setMenuItemId(index);
                         }
                     } else{
                         if(index !== 0) {
                             index = index - 1;
-                            setIndex(index)
-                            setMenuItemIdSelected('ui-id-' + index);
-                            setMenuItemNameSelected(listItems[index]);
+                            setIndexMenuItemFocused(index);
                         }
                     }
                 }
@@ -143,18 +115,15 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
                 }*/
                 if(event.target.id === ids.button) {
                     if(isOpen === true) {
-                        if(index !== listItems.length-1) {
+                        let index = indexMenuItemFocused;
+                        if(index !== options.length-1) {
                             index = index + 1;
-                            setIndex(index)
                             setIndexMenuItemFocused(index);
-                            setMenuItemId(index);
                         }
                     } else{
-                        if(index !== listItems.length-1) {
+                        if(index !== options.length-1) {
                             index = index + 1;
-                            setIndex(index)
-                            setMenuItemIdSelected('ui-id-' + index);
-                            setMenuItemNameSelected(listItems[index]);
+                            setIndexMenuItemFocused(index);
                         }
                     }
                 }
@@ -162,8 +131,7 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
             case keyCode.SPACE:
                 if(event.target.id === ids.button) {
                     if (isOpen === true) {
-                        setMenuItemIdSelected('ui-id-' + index);
-                        setMenuItemNameSelected(listItems[index]);
+                        setIndexMenuItemSelected(indexMenuItemFocused);
                         setIsOpen(false);
                     } else {
                         setIsOpen(true);
@@ -173,11 +141,10 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
             case keyCode.LEFT:
                 if(event.target.id === ids.button) {
                     if(isOpen === true) {
+                        let index = indexMenuItemFocused;
                         if(index !== 0) {
                             index = index - 1;
-                            setIndex(index)
                             setIndexMenuItemFocused(index);
-                            setMenuItemId(index);
                         }
                     }
                 }
@@ -185,11 +152,10 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
             case keyCode.RIGHT:
                 if(event.target.id === ids.button) {
                     if(isOpen === true) {
-                        if(index !== listItems.length-1) {
+                        let index = indexMenuItemFocused;
+                        if(index !== options.length-1) {
                             index = index + 1;
-                            setIndex(index)
                             setIndexMenuItemFocused(index);
-                            setMenuItemId(index);
                         }
                     }
                 }
@@ -197,16 +163,12 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
             case keyCode.HOME:
             case keyCode.PAGE_UP:
                 index = 0;
-                setIndex(index)
                 setIndexMenuItemFocused(index);
-                setMenuItemId(index);
                 break;
             case keyCode.END:
             case keyCode.PAGE_DOWN:
-                index = listItems.length-1;
-                setIndex(index)
+                index = options.length-1;
                 setIndexMenuItemFocused(index);
-                setMenuItemId(index);
                 break;
             default:
                 //this.menu.trigger( event );
@@ -218,30 +180,107 @@ export default function SelectMenu({ selectmenuId, listStyle }) {
         }
     }
 
+    const drawButtonClass = isOpen ? "ui-selectmenu-button-open ui-corner-top" : "ui-selectmenu-button-closed ui-corner-all";
+    const uiSelectmenuOpen = isOpen ? " ui-selectmenu-open" : "";
     return (
         <React.Fragment>
-            <DrawButton 
-                ids={ids} 
-                isOpen={isOpen} 
-                menuItemId={menuItemId} 
-                menuItemIdSelected={menuItemIdSelected} 
-                menuItemNameSelected={menuItemNameSelected} 
-                setIsOpen={setIsOpen}
-            />
-            <DrawMenu 
-                ids={ids} 
-                isOpen={isOpen}
-                menuItemId={menuItemId} 
-                indexMenuItemFocused={indexMenuItemFocused}
-                listStyle={listStyle}  
-                listItems={listItems} 
-                setIsOpen={setIsOpen}
-                setMenuItemId={setMenuItemId} 
-                setMenuItemIdSelected={setMenuItemIdSelected} 
-                setMenuItemNameSelected={setMenuItemNameSelected} 
-                setIndexMenuItemFocused={setIndexMenuItemFocused}
-                setIndex={setIndex}
-            />
+            <select name={SelectMenuID} id={SelectMenuID} style={{display: 'none'}}>
+                {
+                    options.map((option, index) => (
+                        <option key={`${option.name}-${index}`} value={option.abbreviation}>
+                            {option.name}
+                        </option>
+                    ))
+                }
+            </select>
+            <span 
+                id={ids.button}
+                className={"ui-selectmenu-button ui-button ui-widget " + drawButtonClass}
+                tabIndex={0} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                role={"combobox"}
+                aria-expanded={isOpen} // Indicate if the menu is open or closed
+                aria-controls={ids.element + 'list'} // Indicate that this element controles the element which has the same id
+                aria-autocomplete={"list"} // indicates whether inputting text could trigger display of one or more predictions
+                aria-owns={ids.menu} // defines a relationship between parent and its child elements
+                aria-haspopup={true} // indicates the availability
+                aria-activedescendant={options[indexMenuItemFocused].name.toLowerCase()+ "-" + indexMenuItemFocused} // identifies the currently active element when focus is on a composite
+                aria-labelledby={options[indexMenuItemSelected].name.toLowerCase()+ "-" + indexMenuItemSelected} // identifies the element id selected
+                aria-disabled={false} // state indicates that the element is perceivable but disabled, so it is not editable or otherwise operable
+                onClick={() => {
+                    setIsOpen(!isOpen);
+                }}
+            >
+                <span className='ui-selectmenu-icon ui-icon ui-icon-triangle-1-s'></span>
+                <span className='ui-selectmenu-text'>
+                    {options[indexMenuItemSelected].name}
+                </span>
+            </span>
+            <div 
+                className={"ui-selectmenu-menu ui-front" + uiSelectmenuOpen}
+                //style = {listStyle}
+            > 
+                <ul 
+                    id={ids.menu}
+                    className='ui-menu ui-corner-bottom ui-widget ui-widget-content'
+                    style = {{
+                        width: 256
+                    }}
+                    tabIndex={0} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                    role='listbox'
+                    aria-hidden={!isOpen} // indicates whether the element is exposed to an accessibility API
+                    aria-labelledby={ids.button} // identifies the element id selected
+                    aria-activedescendant={options[indexMenuItemFocused].name.toLowerCase()+ "-" + indexMenuItemFocused} // identifies the currently active element when focus is on a composite
+                    aria-disabled={false} // state indicates that the element is perceivable but disabled, so it is not editable or otherwise operable
+                >
+                    {
+                        isOpen ? (
+                            options.map((listElement, index) => {
+                                const uiStateActiveClass = index === indexMenuItemFocused ? "ui-state-active" : "";
+                                return(
+                                <li 
+                                    key={options[index].name.toLowerCase()+ "-" + index} 
+                                    className='ui-menu-item'
+                                >
+                                    <div 
+                                        id={options[index].name.toLowerCase()+ "-" + index} 
+                                        className={'ui-menu-item-wrapper ' + uiStateActiveClass}
+                                        tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                                        role='option'
+                                        aria-selected={false} // indicates the current "selected" state of various widgets
+                                        onMouseEnter={() => {
+                                            setIndexMenuItemFocused(index);
+                                        }}
+                                        onClick={() => {
+                                            setIndexMenuItemSelected(index);
+                                            setData(listElement.abbreviation);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        {listElement.name}
+                                    </div>
+                                </li>
+                            )})
+                        ) : (
+                            options.map((listElement, index) => (
+                                <li 
+                                    key={options[index].name.toLowerCase()+ "-" + index} 
+                                    className='ui-menu-item'
+                                >
+                                    <div 
+                                        id={options[index].name.toLowerCase()+ "-" + index}
+                                        className='ui-menu-item-wrapper'
+                                        tabIndex={-1} // makes the element focusable (0) or not (-1) for sequential focus navigation
+                                        role='option'
+                                        aria-selected={false} // indicates the current "selected" state of various widgets
+                                    >
+                                        {listElement.name}
+                                    </div>
+                                </li>
+                            ))
+                        )
+                    }  
+                </ul>
+            </div>
         </React.Fragment>
     )
 }

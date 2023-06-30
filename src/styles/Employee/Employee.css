@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Pompiere&display=swap");
 .title {
   display: flex;
   align-items: center;
@@ -13,27 +14,71 @@
 
 label {
   display: block;
-  margin-top: 1rem;
-  margin-bottom: 10px;
+  margin-top: 1rem !important;
+  margin-bottom: 10px !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 .address {
-  margin-top: 10px;
+  margin-top: 10px !important;
+  margin-bottom: none !important;
+  margin-left: none;
+  margin-right: none;
 }
 
 /*-- My CSS code added --*/
 .employees-page-banner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 90%;
-  margin-bottom: 20px;
+  height: none !important;
+  margin-top: none !important;
+  margin-bottom: 20px !important;
+  margin-left: none;
+  margin-right: none;
+}
+@media all and (min-width: 992px) {
+  .employees-page-banner {
+    justify-content: space-between;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .employees-page-banner {
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 767px) {
+  .employees-page-banner {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .employees-page-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 90%;
-  margin-bottom: 40px;
+  height: none !important;
+  margin-top: none !important;
+  margin-bottom: 40px !important;
+  margin-left: none;
+  margin-right: none;
+}
+@media all and (min-width: 992px) {
+  .employees-page-footer {
+    justify-content: space-between;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .employees-page-footer {
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 767px) {
+  .employees-page-footer {
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 10px;
+  }
 }/*# sourceMappingURL=Employee.css.map */

@@ -2,7 +2,15 @@
 
 
 .dataTables-info {
-    @include syntaxe-garamond(18px, normal);
+    @media all and (min-width: 992px) {
+        @include syntaxe-garamond(18px, normal);
+    }
+    @media all and (min-width: 768px) and (max-width: 991px) {
+        @include syntaxe-garamond(16px, normal);
+    }
+    @media all and (max-width: 767px) {
+        @include syntaxe-garamond(14px, normal);
+    }
     color: rgb(89 111 11);
     filter: brightness(0.45);
 }

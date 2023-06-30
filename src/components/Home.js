@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { openModal, setUserData } from "./Store.js";
 import { states } from '../data/states.js'
+import { departments } from '../data/departments.js'
 import '../styles/Home/Home.css'
 import '../styles/Modal/Modal.css'
 import '../styles/SelectMenu/SelectMenu.css'
+import '../animations/translationsHomePage/translationHomePage.css'
 import Modal from './Modal.js';
 import SelectMenu from './SelectMenu.js';
 import DatePicker from './DatePicker.js';
@@ -16,44 +18,40 @@ export default function Home() {
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    //const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [startDate, setStartDate] = useState('');
-    //const department = useSelector((state) => state.departmentMenuItemNameSelected);
+    const [state, setState] = useState(states[0].name);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
-    //const state = useSelector((state) => state.statesMenuItemNameSelected);
+    const [department, setDepartment] = useState(departments[0].name);
     const [zipCode, setZipCode] = useState('');
-
-    //const [selectedDate, setSelectedDate] = useState(null);
-    //const [date, setDate] = useState(new Date());
-    console.log(dateOfBirth)
-    console.log(startDate)
     return(
         <React.Fragment>
             <Header />
             <div className="container">
-                <h2 className="form-title">Create Employee</h2>
-                <form action="#" id="create-employee" className='form-content'>
+                <h2 className="form-title translation3">Create Employee</h2>
+                <form action="#" id="create-employee" className='form-content translation4'>
                     <label htmlFor="first-name">First Name</label>
                     <input 
                         type="text" 
                         id="first-name" 
+                        placeholder={firstName}
                         onChange={(e) => {setFirstName(e.target.value)}} 
                     />
 
                     <label htmlFor="last-name">Last Name</label>
                     <input 
                         type="text" 
-                        id="last-name" 
+                        id="last-name"
+                        placeholder={lastName}
                         onChange={(e) => {setLastName(e.target.value)}} 
                     />
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <DatePicker date={dateOfBirth} setDate={setDateOfBirth} />
+                    <DatePicker id={"date-of-birth"} date={dateOfBirth} setDate={setDateOfBirth} />
 
                     <label htmlFor="start-date">Start Date</label>
-                    <DatePicker date={startDate} setDate={setStartDate} />
+                    <DatePicker id={"start-date"} date={startDate} setDate={setStartDate} />
 
                     <fieldset className="address address-content">
                         <legend>Address</legend>
@@ -61,7 +59,8 @@ export default function Home() {
                         <label htmlFor="street">Street</label>
                         <input 
                             id="street" 
-                            type="text" 
+                            type="text"
+                            placeholder={street}
                             onChange={(e) => {setStreet(e.target.value)}} 
                         />
 
@@ -69,72 +68,49 @@ export default function Home() {
                         <input 
                             id="city" 
                             type="text" 
+                            placeholder={city}
                             onChange={(e) => {setCity(e.target.value)}} 
                         />
 
                         <label htmlFor="state">State</label>
-                        <select name="state" id="state" style={{display: 'none'}}>
-                            {
-                                states.map((state, index) => (
-                                    <option key={`${state}-${index}`} value={state.abbreviation}>
-                                        {state.name}
-                                    </option>
-                                ))
-                            }
-                        </select>
                         <SelectMenu 
-                            selectmenuId={"state"}  
-                            listStyle={
-                                {
-                                    top: 679.5,
-                                    left: 630
-                                }
-                            } 
+                            options={states}
+                            SelectMenuID={"state"}
+                            setData={setState}
                         />
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input 
                             id="zip-code" 
                             type="number" 
+                            placeholder={zipCode}
                             onChange={(e) => {setZipCode(e.target.value)}} 
                         />
                     </fieldset>
 
                     <label htmlFor="department">Department</label>
-                    <select name="department" id="department" style={{display: 'none'}}>
-                        <option>Sales</option>
-                        <option>Marketing</option>
-                        <option>Engineering</option>
-                        <option>Human Resources</option>
-                        <option>Legal</option>
-                    </select>
                     <SelectMenu 
-                        selectmenuId={"department"}
-                        listStyle={
-                            {
-                                top: 833.9,
-                                left: 614.4
-                            }
-                        }
+                        options={departments}
+                        SelectMenuID={"department"}
+                        setData={setDepartment}
                     />
-
                 </form>
-
+                
                 <button 
-                    className='form-btn'
+                    className='form-btn translation5'
                     type='button' 
                     onClick={(e) => {
                         e.preventDefault();
                         const userData = {
-                            'firstName': firstName,
-                            'lastName': lastName,
-                            'dateOfBirth': dateOfBirth,
-                            'startDate': startDate,
-                            //'department': department,
-                            'street': street,
-                            'city': city,
-                            //'state': state,
-                            'zipCode': zipCode
+                            "FistName": firstName,
+                            "LastName": lastName,
+                            "StartDate": startDate,
+                            "Department": department,
+                            "DateOfBirth": dateOfBirth,
+                            "Street": street,
+                            "City": city,
+                            "State": state,
+                            "ZipCode": zipCode
                         }
                         dispatch(setUserData(userData));
                         dispatch(openModal());
@@ -148,19 +124,16 @@ export default function Home() {
     )
 }
 
-
 /**
- *                     <input 
-                        id="date-of-birth" 
-                        type="text" 
-                        onChange={(e) => {setDateOfBirth(e.target.value)}} 
-                    />
+ *                                 {
+                                    top: 679.5,
+                                    left: 630
+                                }
  */
 
-/**
- *                     <input 
-                        id="start-date" 
-                        type="text" 
-                        onChange={(e) => {setStartDate(e.target.value)}} 
-                    />
- */
+                                /**
+                                 *                             {
+                                top: 833.9,
+                                left: 614.4
+                            }
+                                 */
