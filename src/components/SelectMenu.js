@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 
+/**
+ * Function of the component used to display the Select Menu.
+ */
 export default function SelectMenu({ options, SelectMenuID, setData }) {
     const ids = {
         element: SelectMenuID,    
@@ -21,18 +25,18 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
     //const [count, setCount] = useState(0);
 
 
-
+    document.addEventListener('keydown', detectKeydown);
 
 
     // useEffect pour la navigation clavier
-    useEffect(() => {
+    //useEffect(() => {
         //if(isMounted) {
-            document.addEventListener('keydown', detectKeydown);
+            //document.addEventListener('keydown', detectKeydown);
             //setIsMounted(false)
             //setCount(count+1)
             //return () => document.removeEventListener('keydown', detectKeydown);
         //}
-    });
+    //});
 
     /*useEffect(() => {
         if(!isMounted) {
@@ -283,4 +287,9 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
             </div>
         </React.Fragment>
     )
+}
+SelectMenu.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.object),
+    SelectMenuID: PropTypes.string,
+    setData: PropTypes.func
 }

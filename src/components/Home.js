@@ -13,7 +13,11 @@ import DatePicker from './DatePicker.js';
 import Header from './Header.js';
 
 
-
+/**
+ * Function associate to the home page of the web site
+ * There are many fields whose values are saved in states and send to the store after the user click
+ * on the save button
+ */
 export default function Home() {
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState('');
@@ -123,17 +127,3 @@ export default function Home() {
         </React.Fragment>
     )
 }
-
-/**
- *                                 {
-                                    top: 679.5,
-                                    left: 630
-                                }
- */
-
-                                /**
-                                 *                             {
-                                top: 833.9,
-                                left: 614.4
-                            }
-                                 */

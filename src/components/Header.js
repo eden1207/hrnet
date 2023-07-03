@@ -7,12 +7,16 @@ import { AiFillHome } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
 import { switchHeader } from "./Store.js";
 
-
+/**
+ * Function associate to the header of the web site
+ */
 export default function Header() {
     const dispatch = useDispatch();
     const isHomePage = useSelector((state) => state.isHomePage);
-    // useEffect to update the good header version when the page is uploaded 
-    // (especially the employees page...)
+    /**
+     * useEffect to update the good header version when the page is uploaded 
+     * (especially the employees page...)
+     */
     useEffect(() => {
         const endURL = window.location.href.split('/');
         if(endURL[endURL.length-1] === "employee") {

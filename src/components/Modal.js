@@ -4,6 +4,11 @@ import '../styles/Modal/Modal.css'
 import { closeModal } from './Store';
 import close_btn from '../assets/close.svg'
 
+
+/**
+ * Function associate to the modal when the user click on the save button
+ * It send the user data to the store after the user click on the save button
+ */
 export default function Modal() {
     const dispatch = useDispatch();
     const isModalOpen = useSelector((state) => state.isModalOpen);

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
-import '../styles/Employee/Employee.css';
-import '../animations/translationsEmployeePage/translationsEmployeePage.css'
-//import { data } from '../data/data.js';
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { HiOutlineSearch } from "react-icons/hi";
 import Header from './Header.js';
+import '../styles/Employee/Employee.css';
+import '../animations/translationsEmployeePage/translationsEmployeePage.css'
 import '../styles/EmployeeTable/EmployeeTable.css';
 import '../styles/ShowNumberEntries/ShowNumberEntries.css';
 import '../styles/EmployeeTableInfo/EmployeeTableInfo.css';
@@ -14,7 +13,14 @@ import '../styles/EmployeeTablePaginate/EmployeeTablePaginate.css';
 import '../styles/SearchBar/SearchBar.css';
 
 
-
+/**
+ * Function to create an array of user data to display on the table as function of the number
+ * of users to display on a window and as function of the index of the page selected
+ * @param {Array.<Object>} data 
+ * @param {number} startIndex 
+ * @param {number} endIndex 
+ * @returns {Array.<Object>}
+ */
 function setUserDataDisplayed(data, startIndex, endIndex) {
     let setUserDataDisplayed = [];
     for(let i=startIndex; i<endIndex; i++) {
@@ -23,6 +29,13 @@ function setUserDataDisplayed(data, startIndex, endIndex) {
     return setUserDataDisplayed
 }
 
+/**
+ * Function created to an alphabetic sorting of an array of user data with an ascending/descending way 
+ * @param {Array.<Object>} data 
+ * @param {string} category 
+ * @param {boolean} isAscending 
+ * @returns {Array.<Object>}
+ */
 function sortAlphabetElements(data, category, isAscending) {
     if(category !== '') {
         data.sort((a, b) => {
@@ -80,6 +93,13 @@ function sortAlphabetElements(data, category, isAscending) {
     return data
 }
 
+/**
+ * Function to get all the words from all the user data in order to create an array of keywords.
+ * This array is used to sort user data targeted by the search bar.
+ * @param {Array.<Object>} data 
+ * @param {string} word 
+ * @returns {Array.<string>}
+ */
 function setKeywords(data, word) {
     let allUserDataWords = [];
     for(let i=0; i<data.length; i++) {
@@ -114,35 +134,25 @@ function setKeywords(data, word) {
     return keywords
 }
 
+/**
+ * Function used to sort user data targeted by the search bar
+ * @param {Array.<Object>} data 
+ * @param {Array.<string>} keywords 
+ * @returns {Array.<Object>}
+ */
 function sortUserDataSearched(data, keywords) {
     let allUserDataSelected = [];
     for(let j=0; j<keywords.length; j++) {
         for(let i=0; i<data.length; i++) {
             switch (keywords[j]) {
                 case data[i].FistName.toLowerCase():
-                    //allUserDataSelected.push(data[i]);
-                //break;
                 case data[i].LastName.toLowerCase():
-                    //allUserDataSelected.push(data[i]);
-                //break;
                 case data[i].StartDate.toLowerCase():
-                    //allUserDataSelected.push(data[i]);
-                //break;
                 case data[i].Department.toLowerCase():
-                 //   allUserDataSelected.push(data[i]);
-               // break;
                 case data[i].DateOfBirth.toLowerCase():
-                 //   allUserDataSelected.push(data[i]);
-              // break;
                 case data[i].Street.toLowerCase():
-                 //   allUserDataSelected.push(data[i]);
-                //break;
                 case data[i].City.toLowerCase():
-                //    allUserDataSelected.push(data[i]);
-                //break;
                 case data[i].State.toLowerCase():
-                   // allUserDataSelected.push(data[i]);
-               // break;
                 case data[i].ZipCode.toLowerCase():
                     allUserDataSelected.push(data[i]);
                 break;
@@ -168,39 +178,84 @@ function sortUserDataSearched(data, keywords) {
     return sortUserDataMultipleElements
 }
 
-
+/**
+ * Function of the component used to display the Employee Page.
+ * 
+ * It contains 5 elements, which are the number of employees displayed
+ * on the table, the searchbar, the table, the employee table informations and the
+ * employee table paginate.
+ */
 export default function CurrentEmployee() {
     const data = useSelector((state) => state.data);
-    const [word, setWord] = useState('');
-    const [isTabEmpty, setIsTabEmpty] = useState(false);
-    const [category, setIsCategory] = useState(null);
-    const [isAscending, setIsAscending] = useState(null);
-    const [startIndex, setStartIndex] = useState(0);
-    const [numberEntries, setNumberEntries] = useState(10);
-
-    //Variables de la liste 10, 25, 50, 100
-    const [isShowNumberEntriesOpen, setIsShowNumberEntriesOpen] = useState(false);
-    const numberEntriesValues = [10, 25, 50, 100];
-
-    //Variable EmployeeTable
-    const [activeIndex, setActiveIndex] = useState(null);
-
-    const tabHeadData = ['First Name', 'Last Name', 'Start Date', 'Department', 'Date of Birth', 'Street', 'City', 'State', 'Zip Code'];
-    const columnId = ['FirstName', 'LastName', 'StartDate', 'Department', 'DateOfBirth', 'Street', 'City', 'State', 'ZipCode'];
-
-/**------------------------------- */
-
-
     let userData = data;
 
+    /**
+     * Number of employees displayed on the table:
+     * 
+     * It is displayed thanks to a window on the banner page
+     * isShowNumberEntriesOpen: state to open/close the window
+     * numberEntriesValues: values available of number of users displayed
+     * numberEntries: state containing the value of users displayed on the table
+     */
+    const [isShowNumberEntriesOpen, setIsShowNumberEntriesOpen] = useState(false);
+    const numberEntriesValues = [10, 25, 50, 100];
+    const [numberEntries, setNumberEntries] = useState(10);
+
+    /**
+     * Searchbar:
+     * 
+     * It is possible to write a word that you research
+     * word: state containing the value of what you write in the searchbar
+     * Then, the function setKeywords() set all the words avalaible is the database
+     * of users and select the words values close to the state value "word". We obtain 
+     * an array of keywords.
+     * The function sortUserDataSearched() selects then the users corresponding to the keywords
+     * in order to display them in the table
+     */
+    const [word, setWord] = useState('');
     const keywords = setKeywords(userData, word);
     userData = sortUserDataSearched(userData, keywords);
 
+    /**
+     * Table:
+     * 
+     * It displays all users data avalaible
+     * Each rows correspond to a user and each columns, to a user information (firstName, etc)
+     * For each columns, you can sort all users data thanks to ascending and descending arrows.
+     * It activates the function sortAlphabetElements(), sorting alphabetic elements ascending or 
+     * descending.
+     * category: state setting the category of information to sort (firstName, etc) 
+     * isAscending: state setting the alphabetic sorting configuration (ascending/descending)
+     * activeIndex: index of the active column when we click on the alphabet sorting button
+     * (to change the color column)
+     * tabHeadData: title of each column
+     * columnId: id of each column
+     */
+    const [category, setIsCategory] = useState(null);
+    const [isAscending, setIsAscending] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(null);
+    const tabHeadData = ['First Name', 'Last Name', 'Start Date', 'Department', 'Date of Birth', 'Street', 'City', 'State', 'Zip Code'];
+    const columnId = ['FirstName', 'LastName', 'StartDate', 'Department', 'DateOfBirth', 'Street', 'City', 'State', 'ZipCode'];
     userData = sortAlphabetElements(userData, category, isAscending);
 
+    /**
+     * Employee table information:
+     * 
+     * When we have all informations about the number of users to display, we need to know the index 
+     * of the first user of the table and the last one. The function setUserDataDisplayed() selects the
+     * users data to display on the table page.
+     * startIndex: index of the first user displayed
+     * endIndex: index of the last user displayed
+     */
+    const [startIndex, setStartIndex] = useState(0);
     const endIndex = startIndex + numberEntries > userData.length ? userData.length : startIndex + numberEntries;
     const userDataDisplayed = setUserDataDisplayed(userData, startIndex, endIndex);
 
+    /**
+     * isTabEmpty: state indicate if the table is empty or not, in order to send an error message
+     * for the first case
+     */
+    const [isTabEmpty, setIsTabEmpty] = useState(false);
     if(userData.length === 0 && isTabEmpty === false) {
         setIsTabEmpty(true);
     } 
@@ -208,25 +263,27 @@ export default function CurrentEmployee() {
         setIsTabEmpty(false);
     } 
 
-        //EmployeeTablePaginate
-        const [indexPage, setIndexPage] = useState(0);
-        const [indexPageSelected, setIndexPageSelected] = useState(0);
-    
-        //const N1 = userData.length; // nombre total de lignes
-        //const N2 = numberEntries; // nombre de lignes à afficher
-        let listPageNumber = [];
-        for(let i=0; i<Math.ceil(userData.length / numberEntries); i++) {
-            listPageNumber.push({
-                'pageNumber': i+1,
-                'startIndexPage': i*numberEntries
-            });
-        }
-        const paginateBtnPrevArrowColor = indexPage-1<0 ? 'paginate-btn-prev-arrow-color' : 'paginate-btn-prev-arrow-active-color';
-        const paginateBtnNextArrowColor = indexPage+1>listPageNumber.length-1 ? 'paginate-btn-next-arrow-color' : 'paginate-btn-next-arrow-active-color';
-        const paginateBtnPrevArrowTabIndex = indexPage-1<0 ? -1 : 0;
-        const paginateBtnNextArrowTabIndex = indexPage+1>listPageNumber.length-1 ? -1 : 0;
-        /**-------------------------------- */
-
+    /**
+     * Employee table paginate:
+     * 
+     * This element of the page provide the different number of windows to display in the table.
+     * For example, if we have 23 users and we want to display in the table a window of 10 users,
+     * there will be two windows of 10 users and a window of three users
+     * To do so, we need to know the total number of users (userData.length) and the number of users
+     * to display (the state "numberEntries" provided by the element on the top of the employee page).
+     * Then, when each windows are created, we want to know what page is selected in order to display it 
+     * and also in order to indicate if we are able to use the arrows to go to the previous/next page and
+     * to indicate the page selected.
+     * This is provided by the state "indexPageSelected" 
+     */
+    let listPageNumber = [];
+    for(let i=0; i<Math.ceil(userData.length / numberEntries); i++) {
+        listPageNumber.push({
+            'pageNumber': i+1,
+            'startIndexPage': i*numberEntries
+        });
+    }
+    const [indexPageSelected, setIndexPageSelected] = useState(0);
     return(
         <div id="employee-div" className="container">
             <Header />
@@ -306,7 +363,7 @@ export default function CurrentEmployee() {
                                     const downArrowClass = index === activeIndex && !isAscending ? "arrowWhite" : "";;
                                     return(
                                         <th 
-                                            key={`${title}-${index}`} 
+                                            key={columnId[index]} 
                                             className='column-content'
                                             tabIndex={0} 
                                             aria-controls='employee-table' 
@@ -435,18 +492,17 @@ export default function CurrentEmployee() {
                 >
                     <button 
                         id="employee-table_previous" 
-                        className={'paginate-btn-arrow ' + paginateBtnPrevArrowColor}
+                        className={indexPageSelected-1<0 ? 'paginate-btn-arrow paginate-btn-prev-arrow-color' : 'paginate-btn-arrow paginate-btn-prev-arrow-active-color'}
                         data-dt-idx={0}
                         aria-controls='employee-table'
-                        tabIndex={paginateBtnPrevArrowTabIndex}
+                        tabIndex={indexPageSelected-1<0 ? -1 : 0}
                         type='button'
                         onClick={(e) => {
-                            if(indexPage-1<0) {
+                            if(indexPageSelected-1<0) {
                                 e.preventDefault();
                             } else{
-                                setStartIndex(listPageNumber[indexPage-1].startIndexPage);
-                                setIndexPage(indexPage-1);
-                                setIndexPageSelected(indexPage-1);
+                                setStartIndex(listPageNumber[indexPageSelected-1].startIndexPage);
+                                setIndexPageSelected(indexPageSelected-1);
                             }
                         }}
                     >
@@ -466,7 +522,6 @@ export default function CurrentEmployee() {
                                     type='button'
                                     onClick={() => {
                                         setStartIndex(tabElement.startIndexPage);
-                                        setIndexPage(index);
                                         setIndexPageSelected(index);
                                     }}
                                 >
@@ -477,18 +532,17 @@ export default function CurrentEmployee() {
                     }
                     <button 
                         id="employee-table_next" 
-                        className={'paginate-btn-arrow ' + paginateBtnNextArrowColor}
+                        className={indexPageSelected+1>listPageNumber.length-1 ? 'paginate-btn-arrow paginate-btn-next-arrow-color' : 'paginate-btn-arrow paginate-btn-next-arrow-active-color'}
                         data-dt-idx={listPageNumber.length+1}
                         aria-controls='employee-table'
-                        tabIndex={paginateBtnNextArrowTabIndex}
+                        tabIndex={indexPageSelected+1>listPageNumber.length-1 ? -1 : 0}
                         type='button'
                         onClick={(e) => {
-                            if(indexPage+1>listPageNumber.length-1) {
+                            if(indexPageSelected+1>listPageNumber.length-1) {
                                 e.preventDefault();
                             } else{
-                                setStartIndex(listPageNumber[indexPage+1].startIndexPage);
-                                setIndexPage(indexPage+1);
-                                setIndexPageSelected(indexPage+1);
+                                setStartIndex(listPageNumber[indexPageSelected+1].startIndexPage);
+                                setIndexPageSelected(indexPageSelected+1);
                             }
                         }}
                     >

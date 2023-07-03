@@ -190,18 +190,6 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.row-information-text-selected-City {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.row-information-text-selected-State {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.row-information-text-selected-ZipCode {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 .odd {
   background-color: rgb(255, 255, 255);
 }

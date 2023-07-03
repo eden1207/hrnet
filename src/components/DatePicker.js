@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-
+/**
+ * Function associate to the date picker to select the user's date of birth or his/her start date
+ */
 export default function DatePicker({ id, date, setDate }) {
     const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
     return isDatePickerOpen ? (
@@ -40,4 +43,9 @@ export default function DatePicker({ id, date, setDate }) {
             />
         </div>
     )
+}
+DatePicker.propTypes = {
+    id: PropTypes.string,
+    date: PropTypes.string,
+    setDate: PropTypes.func
 }
