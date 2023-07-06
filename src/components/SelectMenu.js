@@ -20,31 +20,11 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
     const [isOpen, setIsOpen] = useState(false);
     const [indexMenuItemSelected, setIndexMenuItemSelected] = useState(0);
     const [indexMenuItemFocused, setIndexMenuItemFocused] = useState(0);
-
-    //const [isMounted, setIsMounted] = useState(true);
-    //const [count, setCount] = useState(0);
-
-
-    document.addEventListener('keydown', detectKeydown);
-
-
-    // useEffect pour la navigation clavier
-    //useEffect(() => {
-        //if(isMounted) {
-            //document.addEventListener('keydown', detectKeydown);
-            //setIsMounted(false)
-            //setCount(count+1)
-            //return () => document.removeEventListener('keydown', detectKeydown);
-        //}
-    //});
-
-    /*useEffect(() => {
-        if(!isMounted) {
-            setIsMounted(true)
-        }
-    });*/
-
     
+
+    /**
+     * Function to control the select menu keydown events
+     */
     function detectKeydown(event) {
         const keyCode = {
             BACKSPACE: 'Backspace',
@@ -65,69 +45,50 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
             UP: 'ArrowUp'
         };
         let preventDefault = true;
-        let index = indexMenuItemFocused;
         switch (event.key) {
             case keyCode.TAB:
             case keyCode.ESCAPE:
-                //if(event.target.id === ids.button) {
+                if(event.target.id === ids.button) {
                     if (isOpen === false) {
                         return;
                     }
-                    if(event.target.id === ids.button) {
-                        setIsOpen(false);
-                    }
-                    preventDefault = false;
-                //}
+                    setIsOpen(false);
+                }
+                preventDefault = false;
                 break;
             case keyCode.ENTER:
-                /*if ( this.isOpen ) {
-                    this._selectFocusedItem( event );
-                }*/
-                if(event.target.id === ids.button) {
-                    if(isOpen === true) {
-                        setIndexMenuItemSelected(indexMenuItemFocused);
-                        setIsOpen(false);
-                    }
+                if(event.target.id === ids.button && isOpen === true) {
+                    setIndexMenuItemSelected(indexMenuItemFocused);
+                    setData(options[indexMenuItemSelected].abbreviation);
+                    setIsOpen(false);
                 }
                 break;
             case keyCode.UP:
-                /*if ( event.altKey ) {
-                    this._toggle( event );
-                } else {
-                    this._move( "prev", event );
-                }*/
                 if(event.target.id === ids.button) {
-                    if(isOpen === true) {
-                        let index = indexMenuItemFocused;
-                        if(index !== 0) {
-                            index = index - 1;
-                            setIndexMenuItemFocused(index);
-                        }
+                    if(event.altKey) {
+                        setIsOpen(false);
                     } else{
-                        if(index !== 0) {
-                            index = index - 1;
-                            setIndexMenuItemFocused(index);
+                        if(indexMenuItemFocused !== 0) {
+                            setIndexMenuItemFocused(indexMenuItemFocused-1);
+                            if(isOpen === false) {
+                                setIndexMenuItemSelected(indexMenuItemFocused-1);
+                                setData(options[indexMenuItemFocused-1].abbreviation);
+                            }
                         }
                     }
                 }
                 break;
             case keyCode.DOWN:
-                /*if ( event.altKey ) {
-                    this._toggle( event );
-                } else {
-                    this._move( "next", event );
-                }*/
                 if(event.target.id === ids.button) {
-                    if(isOpen === true) {
-                        let index = indexMenuItemFocused;
-                        if(index !== options.length-1) {
-                            index = index + 1;
-                            setIndexMenuItemFocused(index);
-                        }
+                    if(event.altKey) {
+                        setIsOpen(false);
                     } else{
-                        if(index !== options.length-1) {
-                            index = index + 1;
-                            setIndexMenuItemFocused(index);
+                        if(indexMenuItemFocused !== options.length-1) {
+                            setIndexMenuItemFocused(indexMenuItemFocused+1);
+                            if(isOpen === false) {
+                                setIndexMenuItemSelected(indexMenuItemFocused+1);
+                                setData(options[indexMenuItemFocused+1].abbreviation);
+                            }
                         }
                     }
                 }
@@ -136,6 +97,7 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
                 if(event.target.id === ids.button) {
                     if (isOpen === true) {
                         setIndexMenuItemSelected(indexMenuItemFocused);
+                        setData(options[indexMenuItemSelected].abbreviation);
                         setIsOpen(false);
                     } else {
                         setIsOpen(true);
@@ -143,39 +105,40 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
                 }
                 break;
             case keyCode.LEFT:
-                if(event.target.id === ids.button) {
-                    if(isOpen === true) {
-                        let index = indexMenuItemFocused;
-                        if(index !== 0) {
-                            index = index - 1;
-                            setIndexMenuItemFocused(index);
-                        }
+                if(event.target.id === ids.button && indexMenuItemFocused !== 0) {
+                    setIndexMenuItemFocused(indexMenuItemFocused-1);
+                    if(isOpen === false) {
+                        setIndexMenuItemSelected(indexMenuItemFocused-1);
+                        setData(options[indexMenuItemFocused-1].abbreviation);
                     }
                 }
                 break;
             case keyCode.RIGHT:
-                if(event.target.id === ids.button) {
-                    if(isOpen === true) {
-                        let index = indexMenuItemFocused;
-                        if(index !== options.length-1) {
-                            index = index + 1;
-                            setIndexMenuItemFocused(index);
-                        }
+                if(event.target.id === ids.button && indexMenuItemFocused !== options.length-1) {
+                    setIndexMenuItemFocused(indexMenuItemFocused+1);
+                    if(isOpen === false) {
+                        setIndexMenuItemSelected(indexMenuItemFocused+1);
+                        setData(options[indexMenuItemFocused+1].abbreviation);
                     }
                 }
                 break;
             case keyCode.HOME:
             case keyCode.PAGE_UP:
-                index = 0;
-                setIndexMenuItemFocused(index);
+                setIndexMenuItemFocused(0);
+                if(isOpen === false) {
+                    setIndexMenuItemSelected(0);
+                    setData(options[0].abbreviation);
+                }
                 break;
             case keyCode.END:
             case keyCode.PAGE_DOWN:
-                index = options.length-1;
-                setIndexMenuItemFocused(index);
+                setIndexMenuItemFocused(options.length-1);
+                if(isOpen === false) {
+                    setIndexMenuItemSelected(options.length-1);
+                    setData(options[options.length-1].abbreviation);
+                }
                 break;
             default:
-                //this.menu.trigger( event );
                 preventDefault = false;
         }
 
@@ -184,6 +147,9 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
         }
     }
 
+    /**
+     * Values associated to the select menu class depending on the menu configuration
+     */
     const drawButtonClass = isOpen ? "ui-selectmenu-button-open ui-corner-top" : "ui-selectmenu-button-closed ui-corner-all";
     const uiSelectmenuOpen = isOpen ? " ui-selectmenu-open" : "";
     return (
@@ -212,6 +178,9 @@ export default function SelectMenu({ options, SelectMenuID, setData }) {
                 aria-disabled={false} // state indicates that the element is perceivable but disabled, so it is not editable or otherwise operable
                 onClick={() => {
                     setIsOpen(!isOpen);
+                }}
+                onKeyDown={(e) => {
+                    detectKeydown(e);
                 }}
             >
                 <span className='ui-selectmenu-icon ui-icon ui-icon-triangle-1-s'></span>

@@ -27,9 +27,14 @@ export default function Modal() {
                 <h3>Employee created !</h3>
                 <button 
                     className="ConfirmBtn ConfirmBtn_dimensions ConfirmBtn_border" 
-                    type="button" onClick={(e) => {
+                    type="button" 
+                    onClick={(e) => {
                         e.preventDefault();
-                        dispatch(closeModal())
+                        dispatch(closeModal());
+                    }}
+                    onKeyDown={(e) => {
+                        e.preventDefault();
+                        dispatch(closeModal());
                     }}
                 >
                     Close window
