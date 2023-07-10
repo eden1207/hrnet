@@ -5,12 +5,14 @@ import { states } from '../data/states.js'
 import { departments } from '../data/departments.js'
 import '../styles/Home/Home.css'
 import '../styles/Modal/Modal.css'
-import '../styles/SelectMenu/SelectMenu.css'
 import '../animations/translationsHomePage/translationHomePage.css'
 import Modal from './Modal.js';
-import SelectMenu from './SelectMenu.js';
 import DatePicker from './DatePicker.js';
 import Header from './Header.js';
+
+import SelectMenu from './SelectMenu.js';
+import '../styles/SelectMenu/SelectMenu.css'
+//import SelectMenu from 'project-react-select-menu';
 
 
 /**
@@ -24,10 +26,10 @@ export default function Home() {
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [startDate, setStartDate] = useState('');
-    const [state, setState] = useState(states[0].name);
+    const [state, setState] = useState(states[0].abbreviation);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
-    const [department, setDepartment] = useState(departments[0].name);
+    const [department, setDepartment] = useState(departments[0].abbreviation);
     const [zipCode, setZipCode] = useState('');
     return(
         <React.Fragment>
