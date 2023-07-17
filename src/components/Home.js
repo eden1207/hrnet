@@ -9,9 +9,6 @@ import '../animations/translationsHomePage/translationHomePage.css'
 import Modal from './Modal.js';
 import DatePicker from './DatePicker.js';
 import Header from './Header.js';
-
-//import SelectMenu from './SelectMenu.js';
-//import '../styles/SelectMenu/SelectMenu.css'
 import SelectMenu from 'package-select-menu';
 
 
