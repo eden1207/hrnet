@@ -15,14 +15,6 @@ Then,
 git clone https://github.com/eden1207/hrnet.git
 ```
 
-### Go to the project directory :
-
-When you are in the project folder, please, go the the front-end folder,
-
-```
-cd front-end
-```
-
 ### The plugin SelectMenu :
 
 There is on the home page of the website HRNet, a plugin used to display the list of states or 
@@ -48,6 +40,12 @@ npm i package-select-menu
 ```
 
 ### Run the project :
+
+First of all, please, install the dependencies,
+
+```
+npm install
+```
 
 Then, run the project by using the following command,
 
