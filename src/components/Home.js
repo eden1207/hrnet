@@ -78,7 +78,6 @@ export default function Home() {
                         <label htmlFor="state">State</label>
                         <SelectMenu 
                             options={states}
-                            SelectMenuID={"state"}
                             setData={setState}
                         />
 
@@ -94,7 +93,6 @@ export default function Home() {
                     <label htmlFor="department">Department</label>
                     <SelectMenu 
                         options={departments}
-                        SelectMenuID={"department"}
                         setData={setDepartment}
                     />
                 </form>
